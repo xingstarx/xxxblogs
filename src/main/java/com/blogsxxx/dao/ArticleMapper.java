@@ -1,14 +1,8 @@
 package com.blogsxxx.dao;
 
 import com.blogsxxx.model.Article;
-import com.blogsxxx.model.ArticleExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface ArticleMapper {
-    int countByExample(ArticleExample example);
-
-    int deleteByExample(ArticleExample example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -16,17 +10,7 @@ public interface ArticleMapper {
 
     int insertSelective(Article record);
 
-    List<Article> selectByExampleWithBLOBs(ArticleExample example);
-
-    List<Article> selectByExample(ArticleExample example);
-
     Article selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("record") Article record, @Param("example") ArticleExample example);
-
-    int updateByExampleWithBLOBs(@Param("record") Article record, @Param("example") ArticleExample example);
-
-    int updateByExample(@Param("record") Article record, @Param("example") ArticleExample example);
 
     int updateByPrimaryKeySelective(Article record);
 

@@ -26,7 +26,7 @@ public class MybatisUtil {
 	public static void main(String[] args) throws Exception {
 		sqlSessionFactory=getSessionFactory();
 		  SqlSession session = sqlSessionFactory.openSession();  
-		  List<Article> mlist=session.selectList("selectByExampleWithBLOBs");
+		  Article mlist=session.selectOne("selectByPrimaryKey", 1);
 		  System.out.println(mlist);
 	}
 }
