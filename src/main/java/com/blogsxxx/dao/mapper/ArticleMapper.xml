@@ -144,4 +144,29 @@
       lastmodifytime = #{lastmodifytime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- 根据时间排序取出最近的两篇文章 -->
+   <select id="findArticlesByRecent" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_article t order by t.createtime desc  limit 0,2
+  </select>
+  
+   <!-- 根据ID查找上一篇文章 -->
+   <select id="findArticlesByRecent" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_article t where t.id &lt; #{min} limit 0,1
+  </select>
+  <!-- 根据ID查找下一篇文章 -->
+   <select id="findArticlesByRecent" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_article t where t.id &gt; #{max} limit 0,1
+  </select>
 </mapper>

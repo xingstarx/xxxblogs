@@ -1,5 +1,8 @@
 package com.blogsxxx.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.blogsxxx.model.Article;
@@ -18,4 +21,22 @@ public interface ArticleDao {
     int updateByPrimaryKeyWithBLOBs(Article record);
 
     int updateByPrimaryKey(Article record);
+    /**
+	  * @desc 取出最近的二篇文章
+	  * @return List<Article>
+	  */
+	List<Article> findArticlesByRecent();
+	/**
+	  * @desc 根据ID查找上一篇文章
+	  * @param min
+	  * @return
+	  */
+	Article findPreArticleById(@Param("min")Integer min);
+
+	/**
+	 * @desc 查找下一篇文章
+	 * @param max
+	 * @return
+	 */
+	Article findNextArticleById(@Param("max")Integer max);
 }
