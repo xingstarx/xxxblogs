@@ -21,17 +21,17 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.blogsxxx.model.TimeLine" >
-    insert into tb_timeline (id, timestr, descr, 
+    insert into tb_timeline (timestr, descr, 
       articlecount)
-    values (#{id,jdbcType=INTEGER}, #{timestr,jdbcType=INTEGER}, #{descr,jdbcType=VARCHAR}, 
+    values (#{timestr,jdbcType=INTEGER}, #{descr,jdbcType=VARCHAR}, 
       #{articlecount,jdbcType=INTEGER})
+      <selectKey keyProperty="id" resultType="int" order="AFTER">
+			select LAST_INSERT_ID() 
+		</selectKey> 
   </insert>
   <insert id="insertSelective" parameterType="com.blogsxxx.model.TimeLine" >
     insert into tb_timeline
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="timestr != null" >
         timestr,
       </if>
@@ -43,9 +43,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="timestr != null" >
         #{timestr,jdbcType=INTEGER},
       </if>
@@ -56,6 +53,10 @@
         #{articlecount,jdbcType=INTEGER},
       </if>
     </trim>
+    
+     <selectKey keyProperty="id" resultType="int" order="AFTER">
+			select LAST_INSERT_ID() 
+		</selectKey> 
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.blogsxxx.model.TimeLine" >
     update tb_timeline
@@ -79,4 +80,18 @@
       articlecount = #{articlecount,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- 只修改文章篇数 -->
+   <update id="updateTimeLine" parameterType="com.blogsxxx.model.TimeLine" >
+    update tb_timeline
+    set
+      articlecount = #{articlecount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--根据时间倒序，取出所有的时间线集合  -->
+   <select id="findAllTimeLineList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_timeline
+    order by timestr desc
+  </select>
 </mapper>

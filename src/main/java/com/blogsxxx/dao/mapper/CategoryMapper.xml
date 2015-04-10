@@ -1,71 +1,154 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.blogsxxx.dao.CategoryDao" >
-  <resultMap id="BaseResultMap" type="com.blogsxxx.model.Category" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="categoryname" property="categoryname" jdbcType="VARCHAR" />
-    <result column="articlecount" property="articlecount" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blogsxxx.dao.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.blogsxxx.model.Category">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="categoryname" jdbcType="VARCHAR" property="categoryname" />
+    <result column="articlecount" jdbcType="INTEGER" property="articlecount" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, categoryname, articlecount
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_category
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_category
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.blogsxxx.model.Category" >
-    insert into tb_category (id, categoryname, articlecount
+  <insert id="insert" parameterType="com.blogsxxx.model.Category">
+    insert into tb_category (categoryname, articlecount
       )
-    values (#{id,jdbcType=INTEGER}, #{categoryname,jdbcType=VARCHAR}, #{articlecount,jdbcType=INTEGER}
+    values (#{categoryname,jdbcType=VARCHAR}, #{articlecount,jdbcType=INTEGER}
       )
+       <selectKey keyProperty="id" resultType="int" order="AFTER">
+			select LAST_INSERT_ID() 
+		</selectKey> 
   </insert>
-  <insert id="insertSelective" parameterType="com.blogsxxx.model.Category" >
+  <insert id="insertSelective" parameterType="com.blogsxxx.model.Category">
     insert into tb_category
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="categoryname != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="categoryname != null">
         categoryname,
       </if>
-      <if test="articlecount != null" >
+      <if test="articlecount != null">
         articlecount,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="categoryname != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="categoryname != null">
         #{categoryname,jdbcType=VARCHAR},
       </if>
-      <if test="articlecount != null" >
+      <if test="articlecount != null">
         #{articlecount,jdbcType=INTEGER},
       </if>
     </trim>
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+			select LAST_INSERT_ID() 
+		</selectKey> 
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.blogsxxx.model.Category" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.blogsxxx.model.Category">
     update tb_category
-    <set >
-      <if test="categoryname != null" >
+    <set>
+      <if test="categoryname != null">
         categoryname = #{categoryname,jdbcType=VARCHAR},
       </if>
-      <if test="articlecount != null" >
+      <if test="articlecount != null">
         articlecount = #{articlecount,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.blogsxxx.model.Category" >
+  <update id="updateByPrimaryKey" parameterType="com.blogsxxx.model.Category">
     update tb_category
     set categoryname = #{categoryname,jdbcType=VARCHAR},
       articlecount = #{articlecount,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMap" type="com.blogsxxx.model.Category">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="categoryname" jdbcType="VARCHAR" property="categoryname" />
+    <result column="articlecount" jdbcType="INTEGER" property="articlecount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, categoryname, articlecount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_category
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_category
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blogsxxx.model.Category">
+    insert into tb_category (id, categoryname, articlecount
+      )
+    values (#{id,jdbcType=INTEGER}, #{categoryname,jdbcType=VARCHAR}, #{articlecount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blogsxxx.model.Category">
+    insert into tb_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="categoryname != null">
+        categoryname,
+      </if>
+      <if test="articlecount != null">
+        articlecount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="categoryname != null">
+        #{categoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="articlecount != null">
+        #{articlecount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blogsxxx.model.Category">
+    update tb_category
+    <set>
+      <if test="categoryname != null">
+        categoryname = #{categoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="articlecount != null">
+        articlecount = #{articlecount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blogsxxx.model.Category">
+    update tb_category
+    set categoryname = #{categoryname,jdbcType=VARCHAR},
+      articlecount = #{articlecount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <!-- 只修改文章篇数 -->
+   <update id="updatCategory" parameterType="com.blogsxxx.model.Category" >
+    update tb_category
+    set
+      articlecount = #{articlecount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--根据时间倒序，取出所有的时间线集合  -->
+   <select id="findAllTimeLineList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_category
+    order by id asc
+  </select>
 </mapper>

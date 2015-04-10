@@ -1,0 +1,33 @@
+package com.blogsxxx.service.article.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.blogsxxx.dao.CategoryDao;
+import com.blogsxxx.model.Category;
+import com.blogsxxx.service.article.CategoryService;
+@Service
+public class CategoryServiceImpl implements CategoryService {
+	@Autowired
+private CategoryDao categoryDao;
+	@Override
+	public void addCategory(Category category) {
+		// TODO Auto-generated method stub
+		categoryDao.insert(category);
+	}
+
+	@Override
+	public void updatCategory(Category category) {
+		// TODO Auto-generated method stub
+		categoryDao.updatCategory(category);
+	}
+
+	@Override
+	public List<Category> findAllCategoryList() {
+		// TODO Auto-generated method stub
+		return categoryDao.findAllCategoryList();
+	}
+
+}
