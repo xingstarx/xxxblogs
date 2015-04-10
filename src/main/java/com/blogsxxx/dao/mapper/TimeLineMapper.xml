@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blogsxxx.dao.TimeLineDao" >
+  <resultMap id="BaseResultMap" type="com.blogsxxx.model.TimeLine" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="timestr" property="timestr" jdbcType="INTEGER" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="articlecount" property="articlecount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, timestr, descr, articlecount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_timeline
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_timeline
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blogsxxx.model.TimeLine" >
+    insert into tb_timeline (id, timestr, descr, 
+      articlecount)
+    values (#{id,jdbcType=INTEGER}, #{timestr,jdbcType=INTEGER}, #{descr,jdbcType=VARCHAR}, 
+      #{articlecount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blogsxxx.model.TimeLine" >
+    insert into tb_timeline
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="timestr != null" >
+        timestr,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="articlecount != null" >
+        articlecount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="timestr != null" >
+        #{timestr,jdbcType=INTEGER},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="articlecount != null" >
+        #{articlecount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blogsxxx.model.TimeLine" >
+    update tb_timeline
+    <set >
+      <if test="timestr != null" >
+        timestr = #{timestr,jdbcType=INTEGER},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="articlecount != null" >
+        articlecount = #{articlecount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blogsxxx.model.TimeLine" >
+    update tb_timeline
+    set timestr = #{timestr,jdbcType=INTEGER},
+      descr = #{descr,jdbcType=VARCHAR},
+      articlecount = #{articlecount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
