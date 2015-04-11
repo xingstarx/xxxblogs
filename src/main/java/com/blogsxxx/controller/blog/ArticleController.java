@@ -14,7 +14,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.blogsxxx.model.Article;
+import com.blogsxxx.model.Category;
+import com.blogsxxx.model.TimeLine;
 import com.blogsxxx.service.article.ArticleService;
+import com.blogsxxx.service.article.CategoryService;
+import com.blogsxxx.service.article.TimeLineService;
 
 @RequestMapping("/article")
 @Scope("session")
@@ -22,6 +26,10 @@ import com.blogsxxx.service.article.ArticleService;
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private TimeLineService timeLineService;
+	@Autowired
+	private CategoryService categoryService;
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request,HttpServletResponse response){
 		List<Article> articles=articleService.findArticlesByRecent();
@@ -31,6 +39,12 @@ public class ArticleController {
 			request.setAttribute("min", articles.get(articles.size()-1).getId());
 		}
 		request.setAttribute("articles",articles);
+		
+		List<TimeLine> timeLineList=timeLineService.findAllTimeLineList();
+		request.setAttribute("timeLineList", timeLineList);
+		
+		List<Category> categoryList=categoryService.findAllCategoryList();
+		request.setAttribute("categoryList", categoryList);
 		return "article/articleDetail";
 	}     
 	
@@ -43,11 +57,29 @@ public class ArticleController {
 			article=articleService.findNextArticleById(max);
 		}
 		if(article==null){
-			
+			int index=0;
+			if("pre".equals(op)){
+				index=min;
+			}else if ("next".equals(op)) {
+				index=max;
+			}
+			article=articleService.findArticleById(index);
 		}
-		map.put("articles", new ArrayList<Article>().add(article));
+		if(article==null){
+			return "/404";
+		}
+		List<Article> articles=new ArrayList<Article>();
+		articles.add(article);
+		map.put("articles", articles);
 		map.put("max", article.getId());
 		map.put("min", article.getId());
+		
+		List<TimeLine> timeLineList=timeLineService.findAllTimeLineList();
+		map.put("timeLineList", timeLineList);
+		
+		List<Category> categoryList=categoryService.findAllCategoryList();
+		map.put("categoryList", categoryList);
+		
 		return "article/articleDetail";
 	}     
 }

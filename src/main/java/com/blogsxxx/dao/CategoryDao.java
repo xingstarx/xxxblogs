@@ -20,7 +20,7 @@ public interface CategoryDao {
  * 修改 类别
  * @param category
  */
-	void updatCategory(Category category);
+	void updateCategory(Category category);
 /**
  * 根据类别ID排序 列出所有的类别
  * @return

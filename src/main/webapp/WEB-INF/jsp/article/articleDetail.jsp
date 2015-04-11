@@ -93,26 +93,17 @@
 					<div class="sidebar-module">
 						<h4>时间线</h4>
 						<ol class="list-unstyled">
-							<li><a href="#">2015年3月</a></li>
-							<li><a href="#">February 2014</a></li>
-							<li><a href="#">January 2014</a></li>
-							<li><a href="#">December 2013</a></li>
-							<li><a href="#">November 2013</a></li>
-							<li><a href="#">October 2013</a></li>
-							<li><a href="#">September 2013</a></li>
-							<li><a href="#">August 2013</a></li>
-							<li><a href="#">July 2013</a></li>
-							<li><a href="#">June 2013</a></li>
-							<li><a href="#">May 2013</a></li>
-							<li><a href="#">April 2013</a></li>
-						</ol>
+								<c:forEach items="${timeLineList}" var="timeLine" varStatus="status">
+									<li><a href="#">${timeLine.descr }(${timeLine.articlecount })</a></li>
+								</c:forEach>
+							</ol>
 					</div>
 					<div class="sidebar-module">
 						<h4>分类</h4>
 						<ol class="list-unstyled">
-							<li><a href="#">java</a></li>
-							<li><a href="#">python</a></li>
-							<li><a href="#">Facebook</a></li>
+							<c:forEach items="${categoryList}" var="category" varStatus="status">
+									<li><a href="#">${category.categoryname }</a></li>
+								</c:forEach>
 						</ol>
 					</div>
 				</div>
@@ -136,15 +127,15 @@
 		<script src="../bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 		$(function() { 
-		}
+		});
 		function pre(){
 			$("#article_op").val("pre");
-			$("#myForm").attr("action","../payTaxes/payTaxes");
+			$("#myForm").attr("action","flip");
 			$("#myForm").submit();
 		}
 		function next(){
 			$("#article_op").val("next");
-			$("#myForm").attr("action","../payTaxes/payTaxes");
+			$("#myForm").attr("action","flip");
 			$("#myForm").submit();
 		}
 		</script>

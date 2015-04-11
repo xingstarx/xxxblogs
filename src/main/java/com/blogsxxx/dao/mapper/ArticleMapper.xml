@@ -154,7 +154,7 @@
   </select>
   
    <!-- 根据ID查找上一篇文章 -->
-   <select id="findArticlesByRecent" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+   <select id="findPreArticleById" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     ,
@@ -162,7 +162,7 @@
     from tb_article t where t.id &lt; #{min} limit 0,1
   </select>
   <!-- 根据ID查找下一篇文章 -->
-   <select id="findArticlesByRecent" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+   <select id="findNextArticleById" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
     select 
     <include refid="Base_Column_List" />
     ,

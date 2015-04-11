@@ -18,7 +18,7 @@ public interface CategoryService {
 	 * @desc update category
 	 * @param category
 	 */
-	void updatCategory(Category category);
+	void updateCategory(Category category);
 	/**
 	 * @desc findall Category order by id asc
 	 * @return

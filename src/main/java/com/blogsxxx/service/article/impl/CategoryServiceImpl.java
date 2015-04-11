@@ -19,9 +19,9 @@ private CategoryDao categoryDao;
 	}
 
 	@Override
-	public void updatCategory(Category category) {
+	public void updateCategory(Category category) {
 		// TODO Auto-generated method stub
-		categoryDao.updatCategory(category);
+		categoryDao.updateCategory(category);
 	}
 
 	@Override
