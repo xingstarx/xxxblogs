@@ -39,4 +39,10 @@ public interface ArticleDao {
 	 * @return
 	 */
 	Article findNextArticleById(@Param("max")Integer max);
+/**
+ * @desc 根据标题查找文章
+ * @param title
+ * @return
+ */
+	Article findArticleByTitle(@Param("title")String title);
 }

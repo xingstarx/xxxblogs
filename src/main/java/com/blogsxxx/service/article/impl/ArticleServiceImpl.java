@@ -38,6 +38,19 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return articleDao.findNextArticleById(max);
 	}
+
+	@Override
+	public Article findArticleByTitle(String title) {
+		// TODO Auto-generated method stub
+		return articleDao.findArticleByTitle(title);
+	}
+
+	@Override
+	public void saveArticle(Article article) {
+		// TODO Auto-generated method stub
+		articleDao.insert(article);
+//		throw new RuntimeException("rollback! test");
+	}
 	
 	
 }

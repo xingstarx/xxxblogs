@@ -3,83 +3,112 @@ package com.blogsxxx.model;
 import java.util.Date;
 
 public class Article {
-    private Integer id;
+    private Integer id;//主键
 
-    private String title;
+    private String title;//文章标题
 
-    private String pics;
+    private String pics;//ueditor上传的图片路径
 
-    private String creater;
+    private String creater;//创建人
 
-    private Date createtime;
+    private Date createtime;//创建时间
 
-    private String lastmodifier;
+    private String lastmodifier;//最后修改人
 
-    private Date lastmodifytime;
+    private Date lastmodifytime;//最后修改时间
 
-    private String content;
+    private String content;//文章内容
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
-
-    public String getPics() {
-        return pics;
-    }
-
-    public void setPics(String pics) {
-        this.pics = pics == null ? null : pics.trim();
+    private String xxxpics;//content里面存放的图片路径
+    
+    private String xxxrealpathpics;//content里面存放的图片路径 ,在服务器上的图片路径
+    
+    public String getContent() {
+        return content;
     }
 
     public String getCreater() {
         return creater;
     }
 
-    public void setCreater(String creater) {
-        this.creater = creater == null ? null : creater.trim();
-    }
-
     public Date getCreatetime() {
         return createtime;
+    }
+
+	public Integer getId() {
+        return id;
+    }
+
+	public String getLastmodifier() {
+        return lastmodifier;
+    }
+
+	public Date getLastmodifytime() {
+        return lastmodifytime;
+    }
+
+	public String getPics() {
+        return pics;
+    }
+
+	public String getTitle() {
+        return title;
+    }
+
+    public String getXxxpics() {
+		return xxxpics;
+	}
+
+    public String getXxxrealpathpics() {
+		return xxxrealpathpics;
+	}
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
+    public void setCreater(String creater) {
+        this.creater = creater == null ? null : creater.trim();
     }
 
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 
-    public String getLastmodifier() {
-        return lastmodifier;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setLastmodifier(String lastmodifier) {
         this.lastmodifier = lastmodifier == null ? null : lastmodifier.trim();
     }
 
-    public Date getLastmodifytime() {
-        return lastmodifytime;
-    }
-
     public void setLastmodifytime(Date lastmodifytime) {
         this.lastmodifytime = lastmodifytime;
     }
 
-    public String getContent() {
-        return content;
+    public void setPics(String pics) {
+        this.pics = pics == null ? null : pics.trim();
     }
 
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
+
+    public void setXxxpics(String xxxpics) {
+		this.xxxpics = xxxpics;
+	}
+
+    public void setXxxrealpathpics(String xxxrealpathpics) {
+		this.xxxrealpathpics = xxxrealpathpics;
+	}
+
+    @Override
+	public String toString() {
+		return "Article [id=" + id + ", title=" + title + ", pics=" + pics
+				+ ", creater=" + creater + ", createtime=" + createtime
+				+ ", lastmodifier=" + lastmodifier + ", lastmodifytime="
+				+ lastmodifytime + ", content=" + content + ", xxxpics="
+				+ xxxpics + ", xxxrealpathpics=" + xxxrealpathpics + "]";
+	}
 }

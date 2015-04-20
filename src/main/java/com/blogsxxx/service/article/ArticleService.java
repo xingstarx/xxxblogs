@@ -28,4 +28,16 @@ public interface ArticleService {
 	 * @return
 	 */
 	Article findNextArticleById(Integer max);
+	/**
+	 * @author xiongxingxing
+	 * @desc 根据标题查找文章
+	 * @param title
+	 * @return
+	 */
+	Article findArticleByTitle(String title);
+	/**
+	 * @desc 保存文章
+	 * @param article
+	 */
+	void saveArticle(Article article);
 }
