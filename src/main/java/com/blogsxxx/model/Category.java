@@ -5,29 +5,35 @@ public class Category {
 
     private String categoryname;
 
-    private Integer articlecount;
+	private Integer articlecount;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getArticlecount() {
+        return articlecount;
     }
 
     public String getCategoryname() {
         return categoryname;
     }
 
-    public void setCategoryname(String categoryname) {
-        this.categoryname = categoryname == null ? null : categoryname.trim();
-    }
-
-    public Integer getArticlecount() {
-        return articlecount;
+    public Integer getId() {
+        return id;
     }
 
     public void setArticlecount(Integer articlecount) {
         this.articlecount = articlecount;
     }
+
+    public void setCategoryname(String categoryname) {
+        this.categoryname = categoryname == null ? null : categoryname.trim();
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+	public String toString() {
+		return "Category [id=" + id + ", categoryname=" + categoryname
+				+ ", articlecount=" + articlecount + "]";
+	}
 }

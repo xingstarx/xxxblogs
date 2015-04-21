@@ -59,9 +59,7 @@ public class AdminArticleController {
 		}
 		
 		
-		
-		
-		return "redirect:/article/showView?id=1";
+		return "redirect:/article/showView?id="+article.getId();
 	}
 	/**
 	 * @author xiongxingxing
