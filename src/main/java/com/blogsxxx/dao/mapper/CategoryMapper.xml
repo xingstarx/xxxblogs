@@ -19,14 +19,11 @@
     delete from tb_category
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.blogsxxx.model.Category">
+  <insert id="insert" parameterType="com.blogsxxx.model.Category" useGeneratedKeys="true" keyProperty="id">
     insert into tb_category (categoryname, articlecount
       )
     values (#{categoryname,jdbcType=VARCHAR}, #{articlecount,jdbcType=INTEGER}
       )
-       <selectKey keyProperty="id" resultType="int" order="AFTER">
-			select LAST_INSERT_ID() 
-		</selectKey> 
   </insert>
   <insert id="insertSelective" parameterType="com.blogsxxx.model.Category">
     insert into tb_category

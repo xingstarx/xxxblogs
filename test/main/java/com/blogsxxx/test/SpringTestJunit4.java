@@ -28,7 +28,7 @@ public class SpringTestJunit4 {
 	public void testaddCategory(){
 		Category category=new Category();
 		category.setArticlecount(1);
-		category.setCategoryname("python开发");
+		category.setCategoryname("算法");
 		categoryService.addCategory(category);
 		System.out.println(category);
 	}
