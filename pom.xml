@@ -48,6 +48,11 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		
+		<repository>
+            <id>reficio</id>
+            <url>http://repo.reficio.org/maven/</url>
+        </repository>
 	</repositories>
 
 
@@ -253,6 +258,23 @@
 			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ueditor-1.1.1.jar</systemPath>
 		</dependency>
+		
+		 <dependency>
+            <groupId>org.reficio</groupId>
+            <artifactId>soap-builder</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.reficio</groupId>
+            <artifactId>soap-client</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.reficio</groupId>
+            <artifactId>soap-server</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>xxxblogs</finalName>

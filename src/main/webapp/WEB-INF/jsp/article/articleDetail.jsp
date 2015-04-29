@@ -117,8 +117,8 @@
 
 		<footer class="blog-footer">
 			<p>
-				Blog template built for <a href="https://getbootstrap.com">java</a>
-				by <a href="https://twitter.com/mdo">@mdo</a>.
+				xingstar's blogs! <br>
+				个人博客项目 made by java!
 			</p>
 		</footer>
 
