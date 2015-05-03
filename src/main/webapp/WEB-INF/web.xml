@@ -22,9 +22,9 @@
     	<url-pattern>/</url-pattern>
     </servlet-mapping>
     
-   <!--  <filter>
+   <filter>
 		<filter-name>sysFilter</filter-name>
-		<filter-class>com.homelink.homeStore.util.LoginFilter</filter-class>
+		<filter-class>com.blogsxxx.util.LoginFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>sysFilter</filter-name>
@@ -33,7 +33,7 @@
 	<filter-mapping>
 		<filter-name>sysFilter</filter-name>
 		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping> -->
+	</filter-mapping>
     <!-- 字符编码过滤器 start-->
     <filter>
 	    <filter-name>encodingFilter</filter-name>
