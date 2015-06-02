@@ -1,6 +1,7 @@
 package com.blogsxxx.service.article;
 
 import java.util.List;
+import java.util.Map;
 
 import com.blogsxxx.model.Article;
 
@@ -40,4 +41,22 @@ public interface ArticleService {
 	 * @param article
 	 */
 	void saveArticle(Article article);
+	/**
+	 * @author xiongxingxing
+	 * @desc 查询全部的文章
+	 * @return
+	 */
+	List<Article> findAllArticle();
+	/**
+	 * @author xiongxingxing
+	 * @desc 根据文章表做统计，生成对应的记录
+	 * @return
+	 */
+	List<Map<String, Object>> createTimeLineByArticle();
+	/**
+	 * @author xiongxingxing
+	 * @desc 根据文章表做统计，生成对应的类别记录
+	 * @return
+	 */
+	List<Map<String, Object>> createCategoryByArticle();
 }

@@ -30,4 +30,16 @@ private CategoryDao categoryDao;
 		return categoryDao.findAllCategoryList();
 	}
 
+	@Override
+	public Integer findByCategoryName(String categoryname) {
+		// TODO Auto-generated method stub
+		return categoryDao.findByCategoryName(categoryname);
+	}
+
+	@Override
+	public Category findByCategoryName2(String categoryname) {
+		// TODO Auto-generated method stub
+		return categoryDao.findByCategoryName2(categoryname);
+	}
+
 }

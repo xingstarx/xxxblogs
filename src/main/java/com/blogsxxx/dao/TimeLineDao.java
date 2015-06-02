@@ -26,4 +26,10 @@ public interface TimeLineDao {
  * @return
  */
 	List<TimeLine> findAllTimeLineList();
+/**
+ * @desc 根据timeStr查找对应的timeline
+ * @param timeStr
+ * @return
+ */
+TimeLine findTimelineByTimestr(Integer timestr);
 }

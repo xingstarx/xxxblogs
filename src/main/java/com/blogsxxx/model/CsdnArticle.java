@@ -1,35 +1,35 @@
 package com.blogsxxx.model;
 
 import java.util.Date;
+/**
+ * @desc csdn上面的文章
+ * @author xiongxingxing
+ *
+ */
+public class CsdnArticle {
+    private Integer id;
 
-public class Article {
-    private Integer id;//主键
+    private String title;
 
-    private String title;//文章标题
+    private String pics;
 
-    private String pics;//ueditor上传的图片路径
+	private String creater;
 
-    private String creater;//创建人
+    private Date createtime;
 
-    private Date createtime;//创建时间
+    private String lastmodifier;
 
-    private String lastmodifier;//最后修改人
+    private Date lastmodifytime;
 
-    private Date lastmodifytime;//最后修改时间
+    private String xxxpics;
 
-    private String content;//文章内容
+    private String xxxrealpathpics;
 
-    private String xxxpics;//content里面存放的图片路径
+    private String fromurl;
+
+    private String content;
     
-    private String xxxrealpathpics;//content里面存放的图片路径 ,在服务器上的图片路径
-    
-    private String fromurl;//来源
-    private String categoryname;//类别名称
-    private Integer categoryid;//类别id
-    
-    public void setCategoryid(Integer categoryid) {
-		this.categoryid = categoryid;
-	}
+    private String categoryname;	//类别名称
 
 	public String getCategoryname() {
 		return categoryname;
@@ -39,19 +39,19 @@ public class Article {
         return content;
     }
 
-	public String getCreater() {
+    public String getCreater() {
         return creater;
     }
 
-	public Date getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-	public String getFromurl() {
-		return fromurl;
-	}
+    public String getFromurl() {
+        return fromurl;
+    }
 
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -63,22 +63,21 @@ public class Article {
         return lastmodifytime;
     }
 
-	public String getPics() {
+    public String getPics() {
         return pics;
     }
 
-	public String getTitle() {
+    public String getTitle() {
         return title;
     }
 
-	public String getXxxpics() {
-		return xxxpics;
-	}
+    public String getXxxpics() {
+        return xxxpics;
+    }
 
-	public String getXxxrealpathpics() {
-		return xxxrealpathpics;
-	}
-
+    public String getXxxrealpathpics() {
+        return xxxrealpathpics;
+    }
 
     public void setCategoryname(String categoryname) {
 		this.categoryname = categoryname;
@@ -97,8 +96,8 @@ public class Article {
     }
 
     public void setFromurl(String fromurl) {
-		this.fromurl = fromurl;
-	}
+        this.fromurl = fromurl == null ? null : fromurl.trim();
+    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -121,21 +120,21 @@ public class Article {
     }
 
     public void setXxxpics(String xxxpics) {
-		this.xxxpics = xxxpics;
-	}
+        this.xxxpics = xxxpics == null ? null : xxxpics.trim();
+    }
 
     public void setXxxrealpathpics(String xxxrealpathpics) {
-		this.xxxrealpathpics = xxxrealpathpics;
-	}
+        this.xxxrealpathpics = xxxrealpathpics == null ? null : xxxrealpathpics.trim();
+    }
 
     @Override
 	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", pics=" + pics
+		return "CsdnArticle [id=" + id + ", title=" + title + ", pics=" + pics
 				+ ", creater=" + creater + ", createtime=" + createtime
 				+ ", lastmodifier=" + lastmodifier + ", lastmodifytime="
-				+ lastmodifytime + ", content=" + content + ", xxxpics="
-				+ xxxpics + ", xxxrealpathpics=" + xxxrealpathpics
-				+ ", fromurl=" + fromurl + ", categoryname=" + categoryname
-				+ ", categoryid=" + categoryid + "]";
+				+ lastmodifytime + ", xxxpics=" + xxxpics
+				+ ", xxxrealpathpics=" + xxxrealpathpics + ", fromurl="
+				+ fromurl + ", content=" + content + ", categoryname="
+				+ categoryname + "]";
 	}
 }

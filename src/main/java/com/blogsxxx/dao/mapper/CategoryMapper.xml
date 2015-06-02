@@ -79,4 +79,19 @@
     from tb_category
     order by id asc
   </select>
+  <!-- findByCategoryName 根据name查询返回id -->
+   <select id="findByCategoryName" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select 
+    id
+    from tb_category
+    where categoryname = #{categoryname,jdbcType=VARCHAR}
+  </select>
+  
+    <!-- findByCategoryName 根据name查询返回对象 -->
+   <select id="findByCategoryName2" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+     <include refid="Base_Column_List" />
+    from tb_category
+    where categoryname = #{categoryname,jdbcType=VARCHAR}
+  </select>
 </mapper>

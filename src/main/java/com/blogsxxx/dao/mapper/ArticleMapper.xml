@@ -13,6 +13,9 @@
 		<result column="xxxpics" property="xxxpics" jdbcType="VARCHAR" />
 		<result column="xxxrealpathpics" property="xxxrealpathpics"
 			jdbcType="VARCHAR" />
+		<result column="fromurl" property="fromurl" jdbcType="VARCHAR" />
+		<result column="categoryname" property="categoryname" jdbcType="VARCHAR" />
+		<result column="categoryid" property="categoryid" jdbcType="INTEGER" />
 	</resultMap>
 	<resultMap id="ResultMapWithBLOBs" type="com.blogsxxx.model.Article"
 		extends="BaseResultMap">
@@ -21,7 +24,7 @@
 
 	<sql id="Base_Column_List">
 		id, title, pics, creater, createtime, lastmodifier,
-		lastmodifytime,xxxpics,xxxrealpathpics
+		lastmodifytime,xxxpics,xxxrealpathpics,fromurl,categoryname,categoryid
 	</sql>
 	<sql id="Blob_Column_List">
 		content
@@ -45,18 +48,25 @@
 		insert into tb_article (
 		title, pics,
 		creater, createtime, lastmodifier,
-		lastmodifytime, content,xxxpics,xxxrealpathpics)
-		values (#{title,jdbcType=VARCHAR},
+		lastmodifytime, content,xxxpics,xxxrealpathpics,
+		fromurl,categoryname,categoryid)
+		values
+		(#{title,jdbcType=VARCHAR},
 		#{pics,jdbcType=VARCHAR},
 		#{creater,jdbcType=VARCHAR},
-		#{createtime,jdbcType=TIMESTAMP}, #{lastmodifier,jdbcType=VARCHAR},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{lastmodifier,jdbcType=VARCHAR},
 		#{lastmodifytime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR},
 		#{xxxpics,jdbcType=VARCHAR},
-		#{xxxrealpathpics,jdbcType=VARCHAR}
+		#{xxxrealpathpics,jdbcType=VARCHAR},
+		#{fromurl,jdbcType=VARCHAR},
+		#{categoryname,jdbcType=VARCHAR},
+		#{categoryid,jdbcType=INTEGER}
 		)
 		<selectKey keyProperty="id" resultType="int" order="AFTER">
-			select LAST_INSERT_ID() 
-		</selectKey> 
+			select
+			LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 	<insert id="insertSelective" parameterType="com.blogsxxx.model.Article">
 		insert into tb_article
@@ -88,6 +98,15 @@
 			<if test="xxxrealpathpics != null">
 				xxxrealpathpics,
 			</if>
+			<if test="fromurl != null">
+				fromurl,
+			</if>
+			<if test="categoryname != null">
+				categoryname,
+			</if>
+			<if test="categoryid != null">
+				categoryid,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="title != null">
@@ -117,10 +136,20 @@
 			<if test="xxxrealpathpics != null">
 				#{xxxrealpathpics,jdbcType=VARCHAR},
 			</if>
+			<if test="fromurl != null">
+				#{fromurl,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryname != null">
+				#{categoryname,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryid != null">
+				#{categoryid,jdbcType=INTEGER},
+			</if>
 		</trim>
 		<selectKey keyProperty="id" resultType="int" order="AFTER">
-			select LAST_INSERT_ID() 
-		</selectKey> 
+			select
+			LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.blogsxxx.model.Article">
 		update tb_article
@@ -152,6 +181,15 @@
 			<if test="xxxrealpathpics != null">
 				xxxrealpathpics=#{xxxrealpathpics,jdbcType=VARCHAR},
 			</if>
+			<if test="fromurl != null">
+				fromurl=#{fromurl,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryname != null">
+				categoryname=#{categoryname,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryid != null">
+				categoryid=#{categoryid,jdbcType=INTEGER},
+			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
@@ -170,8 +208,13 @@
 		content =
 		#{content,jdbcType=LONGVARCHAR},
 		xxxpics=#{xxxpics,jdbcType=VARCHAR},
-		xxxrealpathpics=#{xxxrealpathpics,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=INTEGER}
+		xxxrealpathpics=#{xxxrealpathpics,jdbcType=VARCHAR},
+		fromurl=#{fromurl,jdbcType=VARCHAR},
+		categoryname=#{categoryname,jdbcType=VARCHAR},
+		categoryid=#{categoryid,jdbcType=INTEGER}
+
+		where id =
+		#{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.blogsxxx.model.Article">
 		update tb_article
@@ -185,8 +228,12 @@
 		lastmodifytime =
 		#{lastmodifytime,jdbcType=TIMESTAMP},
 		xxxpics=#{xxxpics,jdbcType=VARCHAR},
-		xxxrealpathpics=#{xxxrealpathpics,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=INTEGER}
+		xxxrealpathpics=#{xxxrealpathpics,jdbcType=VARCHAR},
+		fromurl=#{fromurl,jdbcType=VARCHAR},
+		categoryname=#{categoryname,jdbcType=VARCHAR},
+		categoryid=#{categoryid,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=INTEGER}
 	</update>
 	<!-- 根据时间排序取出最近的两篇文章 -->
 	<select id="findArticlesByRecent" resultMap="ResultMapWithBLOBs">
@@ -215,8 +262,8 @@
 		<include refid="Blob_Column_List" />
 		from tb_article t where t.id &gt; #{max} limit 0,1
 	</select>
-	
-	<!-- 根据标题查找文章-->
+
+	<!-- 根据标题查找文章 -->
 	<select id="findArticleByTitle" resultMap="ResultMapWithBLOBs"
 		parameterType="java.lang.String">
 		select
@@ -224,5 +271,33 @@
 		,
 		<include refid="Blob_Column_List" />
 		from tb_article t where t.title=#{title}
+	</select>
+
+
+	<!-- 全部的 findAllArticle -->
+	<select id="findAllArticle" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from tb_article t
+	</select>
+
+	<!--根据文章表，生成对应的时间线记录 createTimeLineByArticle -->
+	<select id="createTimeLineByArticle" resultType="java.util.HashMap">
+		select
+		date_format(a.createtime,'%Y%m')
+		as createtime,count(*) as count
+		from tb_article a group by
+		date_format(a.createtime,'%Y%m') 
+		order by date_format(a.createtime,'%Y%m')
+	</select>
+
+	
+	<!--根据文章表，生成对应的类别记录 createCategoryByArticle -->
+	<select id="createCategoryByArticle" resultType="java.util.HashMap">
+		select a.categoryname, a.categoryid 
+		,count(*) as count from tb_article a 
+		group by a.categoryid order by a.categoryid
 	</select>
 </mapper>

@@ -94,4 +94,13 @@
     from tb_timeline
     order by timestr desc
   </select>
+  
+   <!-- findTimelineByTimestr -->
+   <select id="findTimelineByTimestr" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_timeline
+    where timestr = #{timestr,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

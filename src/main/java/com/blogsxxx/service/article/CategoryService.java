@@ -24,4 +24,16 @@ public interface CategoryService {
 	 * @return
 	 */
 	List<Category> findAllCategoryList();
+	/**
+	 * @desc 根据name查询返回id
+	 * @param categoryname
+	 * @return
+	 */
+	Integer findByCategoryName(String categoryname);
+	/**
+	 * 根据name查询返回对象
+	 * @param categoryname
+	 * @return
+	 */
+	Category findByCategoryName2(String categoryname);
 }

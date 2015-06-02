@@ -1,6 +1,7 @@
 package com.blogsxxx.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -45,4 +46,19 @@ public interface ArticleDao {
  * @return
  */
 	Article findArticleByTitle(@Param("title")String title);
+/**
+ * @desc 查找全部的文章
+ * @return
+ */
+List<Article> findAllArticle();
+/**
+ * @desc 根据文章表，生成对应的时间线记录
+ * @return
+ */
+List<Map<String, Object>> createTimeLineByArticle();
+/**
+ * @desc 根据文章表，生成对应的类别记录
+ * @return
+ */
+List<Map<String, Object>> createCategoryByArticle();
 }
