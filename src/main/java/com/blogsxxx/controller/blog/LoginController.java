@@ -1,7 +1,10 @@
 package com.blogsxxx.controller.blog;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +35,42 @@ public class LoginController {
 			user.setUserName(userName);
 			user.setPassword(password);
 			request.getSession().setAttribute("user", user);
-			return "adminarticle/list";
+			return "backEnd/backIndex";
 		}
 		return "article/index";
 	}
+	
+	@RequestMapping("/top")
+	public String loadTop(){
+		System.out.println("top---");
+		return "backEnd/top";
+	}
+	
+	@RequestMapping("/left")
+	public String loadLeft(){
+		System.out.println("left---");
+		return "backEnd/left";
+	}
+	
+	@RequestMapping("/main")
+	public String loadMain(){
+		System.out.println("main---");
+		return "backEnd/list";
+	}
+	/**
+	 * 系统退出
+	 * @return
+	 */
+	@RequestMapping("/exit")
+	public String sysExit(HttpServletRequest request){
+		//session.invalidate();
+		HttpSession session= request.getSession();
+		 Enumeration em = session.getAttributeNames();
+		  while(em.hasMoreElements()){
+		   session.removeAttribute(em.nextElement().toString());
+		  }
+		System.out.println("exit---");
+		return "redirect:article/index";
+	}
+	
 }
