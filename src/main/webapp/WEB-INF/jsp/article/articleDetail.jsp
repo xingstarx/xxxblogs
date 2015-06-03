@@ -58,7 +58,7 @@
 						<h2 class="blog-post-title">${article.title }</h2>
 						<p class="blog-post-meta">
 							<fmt:formatDate value="${article.createtime }" type="both" />
-							by <a href="#">${article.creater }</a>
+							by <span style="color:red;">${article.creater }</span>
 						</p>
 						${article.content }
 

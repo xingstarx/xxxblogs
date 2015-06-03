@@ -55,12 +55,13 @@
 				<c:forEach items="${articles}" var="article" varStatus="status">
 
 					<div class="blog-post">
-						<h2 class="blog-post-title">${article.title }</h2>
+						<h2 class="blog-post-title"><a href="<%=basePath%>article/showView?id=${article.id}">${article.title }</a></h2>
 						<p class="blog-post-meta">
 							<fmt:formatDate value="${article.createtime }" type="both" />
-							by <a href="#">${article.creater }</a>
+							by <span style="color:red;">${article.creater }</span>
+							<span><a href="<%=basePath%>article/showView?id=${article.id}">阅读</a></span>
 						</p>
-						${article.content }
+						${article.content }...
 
 					</div>
 					<!-- /.blog-post -->
