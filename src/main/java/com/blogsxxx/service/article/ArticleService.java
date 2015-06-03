@@ -59,4 +59,16 @@ public interface ArticleService {
 	 * @return
 	 */
 	List<Map<String, Object>> createCategoryByArticle();
+	/**
+	 * @desc 根据时间线id，查找对应的文章
+	 * @param id
+	 * @return
+	 */
+	List<Article> findArticleByTimeLineId(Integer id);
+	/**
+	 * @desc 根据categoryid，查找对应的文章
+	 * @param id
+	 * @return
+	 */
+	List<Article> findArticleByCategoryId(Integer id);
 }

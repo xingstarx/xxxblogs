@@ -67,7 +67,7 @@
 
 				</c:forEach>
 				
-				<form:form id="myForm" action="" method="post">
+			<%-- 	<form:form id="myForm" action="" method="post">
 				<input type="hidden" id="article_max" name="max" value="${max }"/>
 				<input type="hidden" id="article_min" name="min" value="${min }"/>
 				<input type="hidden" id="article_op" name="op" value=""/>
@@ -81,7 +81,7 @@
 							onclick="javascript: return next();">下一篇</a></li>
 					</ul>
 				</nav>
-
+ --%>
 			</div>
 			<!-- /.blog-main -->
 
@@ -128,7 +128,7 @@
 		<script type="text/javascript">
 		$(function() { 
 		});
-		function pre(){
+		/* function pre(){
 			$("#article_op").val("pre");
 			$("#myForm").attr("action","flip");
 			$("#myForm").submit();
@@ -137,7 +137,7 @@
 			$("#article_op").val("next");
 			$("#myForm").attr("action","flip");
 			$("#myForm").submit();
-		}
+		} */
 		</script>
 </body>
 </html>

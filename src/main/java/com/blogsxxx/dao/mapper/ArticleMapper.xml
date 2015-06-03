@@ -288,16 +288,48 @@
 		select
 		date_format(a.createtime,'%Y%m')
 		as createtime,count(*) as count
-		from tb_article a group by
-		date_format(a.createtime,'%Y%m') 
-		order by date_format(a.createtime,'%Y%m')
+		from
+		tb_article a group by
+		date_format(a.createtime,'%Y%m')
+		order by
+		date_format(a.createtime,'%Y%m')
 	</select>
 
-	
+
 	<!--根据文章表，生成对应的类别记录 createCategoryByArticle -->
 	<select id="createCategoryByArticle" resultType="java.util.HashMap">
-		select a.categoryname, a.categoryid 
-		,count(*) as count from tb_article a 
-		group by a.categoryid order by a.categoryid
+		select
+		a.categoryname, a.categoryid
+		,count(*) as count from tb_article a
+		group
+		by a.categoryid order by a.categoryid
+	</select>
+
+
+	<!-- 全部的 findArticleByTimeLineId -->
+	<select id="findArticleByTimeLineId" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+
+		from tb_article t where date_format(t.createtime,'%Y%m')=
+		(select
+		tl.timestr from tb_timeline tl where tl.id=#{id,jdbcType=INTEGER})
+		order by t.createtime desc
+	</select>
+
+
+	<!-- 全部的 findArticleByCategoryId -->
+	<select id="findArticleByCategoryId" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+
+		from tb_article t where t.categoryid=#{id,jdbcType=INTEGER}
+		order by t.createtime desc 
 	</select>
 </mapper>

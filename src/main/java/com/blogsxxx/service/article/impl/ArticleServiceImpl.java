@@ -70,6 +70,18 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return articleDao.createCategoryByArticle();
 	}
+
+	@Override
+	public List<Article> findArticleByTimeLineId(Integer id) {
+		// TODO Auto-generated method stub
+		return articleDao.findArticleByTimeLineId(id);
+	}
+
+	@Override
+	public List<Article> findArticleByCategoryId(Integer id) {
+		// TODO Auto-generated method stub
+		return articleDao.findArticleByCategoryId(id);
+	}
 	
 	
 }

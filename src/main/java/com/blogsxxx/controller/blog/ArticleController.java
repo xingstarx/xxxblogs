@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import com.blogsxxx.model.TimeLine;
 import com.blogsxxx.service.article.ArticleService;
 import com.blogsxxx.service.article.CategoryService;
 import com.blogsxxx.service.article.TimeLineService;
+import com.blogsxxx.util.HtmlUtils;
 
 @RequestMapping("/article")
 @Scope("session")
@@ -122,5 +124,61 @@ public class ArticleController {
 		map.put("categoryList", categoryList);
 
 		return "article/articleDetail";
+	}
+	
+	
+	/**
+	 * @desc 根据时间线id，显示对应的文章列表
+	 * @param id
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/timeline")
+	public String timeline(Integer id, ModelMap map) {
+		Article article = null;
+		List<Article> articles=null;
+		articles = articleService.findArticleByTimeLineId(id);
+		if (articles == null||articles.size()==0) {
+			return "/404";
+		}
+		for (Article a : articles) {
+			String content = a.getContent();
+			content = Jsoup.parse(content).text().substring(0, 40);
+			a.setContent(content);
+		}
+		map.put("articles", articles);
+		List<TimeLine> timeLineList = timeLineService.findAllTimeLineList();
+		map.put("timeLineList", timeLineList);
+		List<Category> categoryList = categoryService.findAllCategoryList();
+		map.put("categoryList", categoryList);
+		return "article/articleAllList";
+	}
+	
+	
+	/**
+	 * @desc 根据时间线id，显示对应的文章列表
+	 * @param id
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/category")
+	public String category(Integer id, ModelMap map) {
+		Article article = null;
+		List<Article> articles=null;
+		articles = articleService.findArticleByCategoryId(id);
+		if (articles == null||articles.size()==0) {
+			return "/404";
+		}
+		for (Article a : articles) {
+			String content = a.getContent();
+			content = Jsoup.parse(content).text().substring(0, 40);
+			a.setContent(content);
+		}
+		map.put("articles", articles);
+		List<TimeLine> timeLineList = timeLineService.findAllTimeLineList();
+		map.put("timeLineList", timeLineList);
+		List<Category> categoryList = categoryService.findAllCategoryList();
+		map.put("categoryList", categoryList);
+		return "article/articleAllList";
 	}
 }

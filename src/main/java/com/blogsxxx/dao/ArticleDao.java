@@ -61,4 +61,16 @@ List<Map<String, Object>> createTimeLineByArticle();
  * @return
  */
 List<Map<String, Object>> createCategoryByArticle();
+/**
+ * @desc 根据时间线ID，查找对应的文章列表
+ * @param id
+ * @return
+ */
+List<Article> findArticleByTimeLineId(Integer id);
+/**
+ * @desc 根据categoryid,查找对应的文章列表
+ * @param id
+ * @return
+ */
+List<Article> findArticleByCategoryId(Integer id);
 }
