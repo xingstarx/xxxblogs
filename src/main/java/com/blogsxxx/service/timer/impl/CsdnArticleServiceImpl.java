@@ -1,7 +1,5 @@
 package com.blogsxxx.service.timer.impl;
 
-import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -322,6 +320,28 @@ public class CsdnArticleServiceImpl implements CsdnArticleService {
 			e.printStackTrace();
 			throw new RuntimeException("插入条目失败！");
 		}
+	}
+
+	@Override
+	public void synchronCSDNBlogsAndCreateTable() {
+		// TODO Auto-generated method stub
+		
+		try {
+			log.info("第一次同步的全部任务开始");
+			initCsdnCategory();
+			
+			initCsdnArticleAll();
+			
+			cpCsdnArticleToXXXBlogs();
+			log.info("第一次同步的全部任务结束");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.error("第一次同步的全部任务出错");
+			throw new RuntimeException("synchronCSDNBlogsAndCreateTable rollback !");
+		}
+		
+		
 	}
 
 }

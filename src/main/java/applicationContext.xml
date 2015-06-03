@@ -108,15 +108,14 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
 
-
- <!-- 同步任务 -->
+<!-- 同步任务 -->
+ <!-- 
  <bean name="csdnArticleServiceImpl" class="com.blogsxxx.service.timer.impl.CsdnArticleServiceImpl"/>
-	<!-- 任务调度定义 -->
 	<task:scheduler id="scheduler" pool-size="10"/>
 	<task:scheduled-tasks scheduler="scheduler">
-		<!-- 只调度一次 -->
-		<!-- <task:scheduled ref="csdnArticleServiceImpl" method="initCsdnCategory" cron="0 47 16 * * ?"/> -->
-		<!-- <task:scheduled ref="csdnArticleServiceImpl" method="initCsdnArticleAll" cron="0 25 19 * * ?"/> -->
+		<task:scheduled ref="csdnArticleServiceImpl" method="initCsdnCategory" cron="0 47 16 * * ?"/>
+		<task:scheduled ref="csdnArticleServiceImpl" method="initCsdnArticleAll" cron="0 25 19 * * ?"/>
 		<task:scheduled ref="csdnArticleServiceImpl" method="cpCsdnArticleToXXXBlogs" cron="0 29 21 * * ?"/>
-	</task:scheduled-tasks>
+		<task:scheduled ref="csdnArticleServiceImpl" method="synchronCSDNBlogsAndCreateTable" cron="0 29 21 * * ?"/>
+	</task:scheduled-tasks> -->
 </beans>        

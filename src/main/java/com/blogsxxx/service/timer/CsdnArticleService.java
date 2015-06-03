@@ -36,5 +36,10 @@ public interface CsdnArticleService {
 	 */
 	void addTimeLines(List<Map<String, Object>> mTimeLineList);
 	
+	/**
+	 * @author xiongxingxing
+	 * @desc 总的调度，即系统第一次调度，把csdn上的文章同步过来
+	 */
+	public void synchronCSDNBlogsAndCreateTable();
 	
 }
