@@ -45,4 +45,11 @@ public interface CategoryDao {
 	 * @return
 	 */
 	Category findByCategoryName2(String categoryname);
+	/**
+	 * @author xiongxingxing
+	 * @desc 根据id 查找，返回对象
+	 * @param categoryname
+	 * @return
+	 */
+	Category findCategoryById(Integer categoryId);
 }

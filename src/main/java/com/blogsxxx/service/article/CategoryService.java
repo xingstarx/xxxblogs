@@ -36,4 +36,10 @@ public interface CategoryService {
 	 * @return
 	 */
 	Category findByCategoryName2(String categoryname);
+	/**
+	 * @desc 根据ID查找
+	 * @param categoryId
+	 * @return
+	 */
+	Category findCategoryById(Integer categoryId);
 }

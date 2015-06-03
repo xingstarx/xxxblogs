@@ -42,4 +42,10 @@ private CategoryDao categoryDao;
 		return categoryDao.findByCategoryName2(categoryname);
 	}
 
+	@Override
+	public Category findCategoryById(Integer categoryId) {
+		// TODO Auto-generated method stub
+		return categoryDao.findCategoryById(categoryId);
+	}
+
 }

@@ -94,4 +94,12 @@
     from tb_category
     where categoryname = #{categoryname,jdbcType=VARCHAR}
   </select>
+  
+    <!-- findCategoryById 根据id查询返回对象 -->
+   <select id="findCategoryById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+     <include refid="Base_Column_List" />
+    from tb_category
+    where id = #{categoryId,jdbcType=INTEGER}
+  </select>
 </mapper>

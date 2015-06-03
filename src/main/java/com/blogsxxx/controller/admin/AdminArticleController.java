@@ -1,9 +1,12 @@
 package com.blogsxxx.controller.admin;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +24,8 @@ import com.blogsxxx.model.Article;
 import com.blogsxxx.model.Category;
 import com.blogsxxx.service.article.ArticleService;
 import com.blogsxxx.service.article.CategoryService;
+import com.blogsxxx.service.article.TimeLineService;
+import com.blogsxxx.service.timer.CsdnArticleService;
 import com.blogsxxx.test.PageView;
 import com.blogsxxx.test.QueryResult;
 import com.blogsxxx.test.Student;
@@ -38,6 +43,12 @@ public class AdminArticleController {
 	private CategoryService categoryService;
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private CsdnArticleService csdnArticleService;
+	@Autowired
+	private TimeLineService timeLineService;
+	
+	
 	private Logger log = Logger.getLogger(getClass());
 
 	@RequestMapping("/toWriteArticle")
@@ -54,15 +65,26 @@ public class AdminArticleController {
 		String basePath = CommUtil.getBasepath(request);
 		String content = request.getParameter("editorValue");
 		Article oldArticle = articleService.findArticleByTitle(title.trim());
-
+		Category category=categoryService.findCategoryById(categoryId);
+		
 		Article article = createArticle(pics, content, title, basePath,
 				session, oldArticle);
 		// 新创建的文章
+		article.setCategoryid(categoryId);
+		article.setCategoryname(category.getCategoryname());
+		
 		if (oldArticle == null) {
+			article.setFromurl("");//自己创建的没有来源
 			articleService.saveArticle(article);
+			category.setArticlecount(category.getArticlecount()+1);
+			categoryService.updateCategory(category);
+			
+			Integer temp=Integer.valueOf(new SimpleDateFormat("yyyyMM").format(new Date()));
+			timeLineService.addOrUpdateTimeLineByTimestr(temp);
+			
 			// 修改的文章
 		} else {
-
+			article.setFromurl(oldArticle.getFromurl());//沿用原来的来源
 		}
 
 		return "redirect:/article/showView?id=" + article.getId();

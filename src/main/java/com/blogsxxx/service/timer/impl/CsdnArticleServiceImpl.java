@@ -244,7 +244,8 @@ public class CsdnArticleServiceImpl implements CsdnArticleService {
 	}
 
 	// 生成时间线，或者是更新
-	private void addTimeLines(List<Map<String, Object>> mTimeLineList) {
+	@Override
+	public void addTimeLines(List<Map<String, Object>> mTimeLineList) {
 		for (Map<String, Object> map : mTimeLineList) {
 			String createTime = map.get("createtime").toString();
 			String count = map.get("count").toString();

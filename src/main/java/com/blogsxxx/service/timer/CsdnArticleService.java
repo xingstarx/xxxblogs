@@ -1,5 +1,8 @@
 package com.blogsxxx.service.timer;
 
+import java.util.List;
+import java.util.Map;
+
 public interface CsdnArticleService {
 	/**
 	 * @author xiongxingxing 
@@ -27,6 +30,11 @@ public interface CsdnArticleService {
 	 * @desc 复制文章到本项目是使用的tb_article表中
 	 */
 	public void cpCsdnArticleToXXXBlogs();
+	/**
+	 * @desc 生成时间线，或者是更新 map (createtime  value,  count   value) 
+	 * @param mTimeLineList
+	 */
+	void addTimeLines(List<Map<String, Object>> mTimeLineList);
 	
 	
 }

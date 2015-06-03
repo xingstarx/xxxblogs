@@ -92,8 +92,8 @@ public class LoginFilter implements Filter {
 		// }
 		// }
 		// else
-		if (url.endsWith(".jsp")) {
-			if ((!url.endsWith("index.jsp")) && (!url.endsWith("error.jsp"))) {
+		if (url.endsWith(".jsp")) {//ueditor的控制页面
+			if ((!url.endsWith("index.jsp")) && (!url.endsWith("error.jsp"))  && (!url.endsWith("controller.jsp"))) {
 				logger.info("非法访问： " + url);
 				// httpRequest.setAttribute("msg", "非法访问");
 				// httpResponse.sendRedirect(httpRequest.getContextPath() +

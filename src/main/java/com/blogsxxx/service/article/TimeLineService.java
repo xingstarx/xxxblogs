@@ -27,4 +27,9 @@ public interface TimeLineService {
 	 * @param timeLine
 	 */
 	List<TimeLine> findAllTimeLineList();
+	/**
+	 * @desc 根据timestr生成一条时间线
+	 * @param temp
+	 */
+	void addOrUpdateTimeLineByTimestr(Integer temp);
 }
