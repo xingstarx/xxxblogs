@@ -55,7 +55,7 @@ public class LoginController {
 	@RequestMapping("/main")
 	public String loadMain(){
 		System.out.println("main---");
-		return "backEnd/list";
+		return "redirect:adminarticle/articleList";
 	}
 	/**
 	 * 系统退出

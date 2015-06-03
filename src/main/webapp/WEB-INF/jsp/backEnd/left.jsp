@@ -143,10 +143,10 @@ eval("submenu" + sid + ".style.display=\"none\";");
                 <TABLE cellSpacing=0 cellPadding=0 width=135 align=center>
                   <TBODY>
                     <TR>
-                      <TD height=20><a href="Produce.asp" target=mainFrame>写文章</a></TD>
+                      <TD height=20><a href="<%=basePath%>adminarticle/toWriteArticle" target=mainFrame>写文章</a></TD>
                     </TR>
                     <TR>
-                      <TD height=20><a href="ProduceShow.asp" target="mainFrame">文章列表</a></TD>
+                      <TD height=20><a href="<%=basePath%>adminarticle/articleList" target="mainFrame">文章列表</a></TD>
                     </TR>
                     <!-- <TR>
                       <TD height=20><a href="ProduceAdd.asp" target="mainFrame">商品添加</a></TD>

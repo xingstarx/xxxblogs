@@ -31,6 +31,10 @@ public class Article {
 		this.categoryid = categoryid;
 	}
 
+	public Integer getCategoryid() {
+		return categoryid;
+	}
+
 	public String getCategoryname() {
 		return categoryname;
 	}
