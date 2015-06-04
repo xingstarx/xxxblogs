@@ -36,7 +36,10 @@
 		<property name="minIdle" value="5" />
 		<!-- 获取连接最大等待时间 -->
 		<property name="maxWait" value="10000" />
-
+		<!-- #SQL查询,用来验证从连接池取出的连接 -->
+		<property name="validationQuery" value="SELECT 1" />
+		<!-- #指明连接是否被空闲连接回收器(如果有)进行检验，如果检测失败，则连接将被从池中去除 -->
+		<property name="testWhileIdle" value="true" />
 	</bean>
 	<!-- mybatis -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -108,14 +111,12 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
 
-<!-- 同步任务 -->
- <!-- 
- <bean name="csdnArticleServiceImpl" class="com.blogsxxx.service.timer.impl.CsdnArticleServiceImpl"/>
-	<task:scheduler id="scheduler" pool-size="10"/>
-	<task:scheduled-tasks scheduler="scheduler">
-		<task:scheduled ref="csdnArticleServiceImpl" method="initCsdnCategory" cron="0 47 16 * * ?"/>
-		<task:scheduled ref="csdnArticleServiceImpl" method="initCsdnArticleAll" cron="0 25 19 * * ?"/>
-		<task:scheduled ref="csdnArticleServiceImpl" method="cpCsdnArticleToXXXBlogs" cron="0 29 21 * * ?"/>
-		<task:scheduled ref="csdnArticleServiceImpl" method="synchronCSDNBlogsAndCreateTable" cron="0 29 21 * * ?"/>
-	</task:scheduled-tasks> -->
+	<!-- 同步任务 -->
+	<!-- <bean name="csdnArticleServiceImpl" class="com.blogsxxx.service.timer.impl.CsdnArticleServiceImpl"/> 
+		<task:scheduler id="scheduler" pool-size="10"/> <task:scheduled-tasks scheduler="scheduler"> 
+		<task:scheduled ref="csdnArticleServiceImpl" method="initCsdnCategory" cron="0 
+		47 16 * * ?"/> <task:scheduled ref="csdnArticleServiceImpl" method="initCsdnArticleAll" 
+		cron="0 25 19 * * ?"/> <task:scheduled ref="csdnArticleServiceImpl" method="cpCsdnArticleToXXXBlogs" 
+		cron="0 29 21 * * ?"/> <task:scheduled ref="csdnArticleServiceImpl" method="synchronCSDNBlogsAndCreateTable" 
+		cron="0 29 21 * * ?"/> </task:scheduled-tasks> -->
 </beans>        
