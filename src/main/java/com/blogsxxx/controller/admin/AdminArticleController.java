@@ -202,8 +202,11 @@ public class AdminArticleController {
 
 		for (Article a : mArticles) {
 			String content = a.getContent();
-			content = Jsoup.parse(content).text().substring(0, 40);
-			a.setContent(content);
+			content = Jsoup.parse(content).text();
+			if(StringUtils.isNotBlank(content)){
+				content=content.length()>40?content.substring(0, 40):content;
+				a.setContent(content);
+			}
 			//<wbr>
 			String url=a.getFromurl();
 			a.setFromurl(HtmlUtils.appendWbrTag(url));
