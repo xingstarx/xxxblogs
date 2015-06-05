@@ -21,7 +21,12 @@ public class PicsUrls {
 	/**
 	 * @desc 图片的真实路径
 	 */
-	public static final String PIC_REALPATH = "/Users/xiongxingxing/Documents/uploads";
+	public static String PIC_REALPATH_DEV = "/Users/xiongxingxing/Documents/uploads";//本地开发环境的图片存放的真实路径
+	
+	public static String PIC_REALPATH = "/usr/java/pics";//线上centos环境的图片存放的真实路径
+	
+	public static String PIC_REALPATH_TEMP = "";//临时变量
+	
 	public static final String PIC_KEYWORD = "/upload";
 	public static final String UEDITOR = "ueditor";
 	/**
@@ -29,6 +34,20 @@ public class PicsUrls {
 	 */
 	public static final String PIC_PATH = "xxxpics";
 
+	/**
+	 * @desc 判断当前所处的环境，是开发环境，还是先上环境，方便切换图片的存放路径
+	 * @return
+	 */
+	public static String getPicRealPath(){
+		String name=System.getProperty("os.name").toLowerCase();
+		logger.info("当前环境是在那种系统上呢，Mac，windows为开发环境，Linux为生产环境======"+name);
+		//开发环境
+		if(name.contains("mac")||name.contains("windows")){
+			return PIC_REALPATH_DEV;
+		}
+		//生产环境
+		return PIC_REALPATH;
+	}
 	/**
 	 * @desc 判断url是否包含ueditor字符串
 	 * @param url
@@ -67,5 +86,9 @@ public class PicsUrls {
 		File fileDir = new File(PicsUrls.PIC_PATH);
 		if (!fileDir.exists())
 			fileDir.mkdirs();
+	}
+	public static void main(String[] args) {
+		System.out.println(System.getProperty("os.name"));
+		System.out.println(getPicRealPath());
 	}
 }

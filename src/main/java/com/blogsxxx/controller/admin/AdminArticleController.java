@@ -108,6 +108,8 @@ public class AdminArticleController {
 		String picsArray[] = pics.split(",");
 		String xxxpics = "";// 虚拟路径
 		String xxxrealpathpics = "";// 真实路径
+		PicsUrls.PIC_REALPATH_TEMP=PicsUrls.getPicRealPath();
+		
 
 		if (picsArray != null && picsArray.length > 0) {
 			for (int i = 0; i < picsArray.length; i++) {
@@ -124,8 +126,10 @@ public class AdminArticleController {
 							.indexOf(PicsUrls.PIC_KEYWORD));// :
 															// /upload/image/20150416/1429193129926088002.jpg
 					// 服务器端重新存放图片的位置，真实路径，和虚拟路径
-					String xxxpic = PicsUrls.PIC_PATH + strTemp;
-					String xxxrealpathpic = PicsUrls.PIC_REALPATH + strTemp;
+					//修改一下程序，存在一个bug：这样改了之后，图片的全部连接地址不全，无法加载出页面的，需要修改。
+					//加上basePath前缀
+					String xxxpic = basePath+PicsUrls.PIC_PATH + strTemp;
+					String xxxrealpathpic = PicsUrls.PIC_REALPATH_TEMP + strTemp;
 					log.info("保存到服务器的指定路径" + xxxrealpathpic);
 					// 保存图片到服务器端指定的位置
 					HsFile.copyfile(realPath, xxxrealpathpic);
@@ -142,8 +146,8 @@ public class AdminArticleController {
 					String strTemp = picsArr.substring(picsArr
 							.indexOf(PicsUrls.PIC_KEYWORD));// :
 															// /upload/image/20150416/1429193129926088002.jpg
-					String xxxpic = PicsUrls.PIC_PATH + strTemp;
-					String xxxrealpathpic = PicsUrls.PIC_REALPATH + strTemp;
+					String xxxpic = basePath+PicsUrls.PIC_PATH + strTemp;
+					String xxxrealpathpic = PicsUrls.PIC_REALPATH_TEMP + strTemp;
 
 					xxxpics += xxxpic + ",";
 					xxxrealpathpics += xxxrealpathpic + ",";
