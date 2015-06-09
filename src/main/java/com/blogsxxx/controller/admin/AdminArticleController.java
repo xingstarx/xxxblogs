@@ -118,7 +118,9 @@ public class AdminArticleController {
 				// http://localhost:8080/ueditor/jsp/upload/image/20150416/1429193129926088002.jpg
 				if (StringUtils.isNotBlank(picsArr)
 						&& PicsUrls.containsUeditors(picsArr)) {
+					log.info("basePath的基本路径为："+basePath);
 					String temp = picsArr.replace(basePath, "");
+					log.info("截取后的临时路径为："+temp);
 					String realPath = session.getServletContext().getRealPath(
 							temp);// ueditor的真实路径
 					log.info("ueditor上传的图片的真实路径" + realPath);
