@@ -25,13 +25,22 @@ public class CommUtil {
 	 * @desc 得到basePath的路径
 	 * @author xingxing
 	 * @param request
+	 * @modifier by xxx
+	 * @since 2015-06-09 若端口号为80，去掉不显示；
 	 * @return
 	 */
 	public static String getBasepath(HttpServletRequest request){
 		String path = request.getContextPath();
-		String basePath = request.getScheme() + "://"
-				+ request.getServerName() + ":" + request.getServerPort()
-				+ path + "/";
+		String basePath="";
+		if(!"80".equals(request.getServerPort())){
+			basePath = request.getScheme() + "://"
+					+ request.getServerName() + ":" + request.getServerPort()
+					+ path + "/";
+		}else if("80".equals(request.getServerPort())){
+			basePath = request.getScheme() + "://"
+					+ request.getServerName()
+					+ path + "/";
+		}
 		return basePath;
 	}
 }
