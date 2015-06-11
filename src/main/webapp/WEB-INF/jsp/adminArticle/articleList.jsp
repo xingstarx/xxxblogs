@@ -60,7 +60,7 @@
 						<td width="8%" align="center" >${article.fromurl }</td>
 						<td width="6%" align="center" >${article.categoryname }</td>
 						<td width="4%" align="center" >${article.categoryid }</td>
-						<td width="3%" align="center" >编辑文章</td>
+						<td width="3%" align="center" ><a href="<%=basePath%>adminarticle/toEditorArticle?id=${article.id}">编辑文章</a></td>
 						<td width="3%" align="center" >删除文章</td>
 						<td width="6%" align="center" >隐藏文章|显示文章</td>
 						<td width="4%" align="center" >选定</td>

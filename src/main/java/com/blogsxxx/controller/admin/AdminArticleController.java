@@ -50,11 +50,32 @@ public class AdminArticleController {
 
 	private Logger log = Logger.getLogger(getClass());
 
+	/**
+	 * @desc 写文章
+	 * @author xiongxingxing
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/toWriteArticle")
 	public String writeArticle(HttpServletRequest request) {
 		List<Category> categoryList = categoryService.findAllCategoryList();
 
 		request.setAttribute("categoryList", categoryList);
+		return "/adminArticle/writeArticle";
+	}
+
+	/**
+	 * @desc 编辑文章，即更新文章
+	 * @author xiongxingxing
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/toEditorArticle")
+	public String editorArticle(HttpServletRequest request,Integer id) {
+		List<Category> categoryList = categoryService.findAllCategoryList();
+		Article article=articleService.findArticleById(id);
+		request.setAttribute("categoryList", categoryList);
+		request.setAttribute("article", article);
 		return "/adminArticle/writeArticle";
 	}
 
@@ -206,7 +227,7 @@ public class AdminArticleController {
 		for (Article a : mArticles) {
 			String content = a.getContent();
 			content = Jsoup.parse(content).text();
-			if (content!=null) {
+			if (content != null) {
 				content = content.length() > 40 ? content.substring(0, 40)
 						: content;
 				a.setContent(content);
@@ -220,7 +241,8 @@ public class AdminArticleController {
 		int start = pageView.getStartRecordIndex();
 		int lenght = pageView.getRecordPerPage();
 		QueryResult<Article> qr = new QueryResult<Article>(mArticles.subList(
-				start, start + lenght>mArticles.size()?mArticles.size():start + lenght), mArticles.size());
+				start, start + lenght > mArticles.size() ? mArticles.size()
+						: start + lenght), mArticles.size());
 		pageView.setQueryResult(qr);
 		request.setAttribute("pageView", pageView);
 		request.setAttribute("currentPage", currentPage);
