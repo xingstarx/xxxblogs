@@ -47,8 +47,7 @@ public class AdminArticleController {
 	private CsdnArticleService csdnArticleService;
 	@Autowired
 	private TimeLineService timeLineService;
-	
-	
+
 	private Logger log = Logger.getLogger(getClass());
 
 	@RequestMapping("/toWriteArticle")
@@ -65,26 +64,27 @@ public class AdminArticleController {
 		String basePath = CommUtil.getBasepath(request);
 		String content = request.getParameter("editorValue");
 		Article oldArticle = articleService.findArticleByTitle(title.trim());
-		Category category=categoryService.findCategoryById(categoryId);
-		
+		Category category = categoryService.findCategoryById(categoryId);
+
 		Article article = createArticle(pics, content, title, basePath,
 				session, oldArticle);
 		// 新创建的文章
 		article.setCategoryid(categoryId);
 		article.setCategoryname(category.getCategoryname());
-		
+
 		if (oldArticle == null) {
-			article.setFromurl("");//自己创建的没有来源
+			article.setFromurl("");// 自己创建的没有来源
 			articleService.saveArticle(article);
-			category.setArticlecount(category.getArticlecount()+1);
+			category.setArticlecount(category.getArticlecount() + 1);
 			categoryService.updateCategory(category);
-			
-			Integer temp=Integer.valueOf(new SimpleDateFormat("yyyyMM").format(new Date()));
+
+			Integer temp = Integer.valueOf(new SimpleDateFormat("yyyyMM")
+					.format(new Date()));
 			timeLineService.addOrUpdateTimeLineByTimestr(temp);
-			
+
 			// 修改的文章
 		} else {
-			article.setFromurl(oldArticle.getFromurl());//沿用原来的来源
+			article.setFromurl(oldArticle.getFromurl());// 沿用原来的来源
 		}
 
 		return "redirect:/article/showView?id=" + article.getId();
@@ -108,8 +108,7 @@ public class AdminArticleController {
 		String picsArray[] = pics.split(",");
 		String xxxpics = "";// 虚拟路径
 		String xxxrealpathpics = "";// 真实路径
-		PicsUrls.PIC_REALPATH_TEMP=PicsUrls.getPicRealPath();
-		
+		PicsUrls.PIC_REALPATH_TEMP = PicsUrls.getPicRealPath();
 
 		if (picsArray != null && picsArray.length > 0) {
 			for (int i = 0; i < picsArray.length; i++) {
@@ -118,9 +117,9 @@ public class AdminArticleController {
 				// http://localhost:8080/ueditor/jsp/upload/image/20150416/1429193129926088002.jpg
 				if (StringUtils.isNotBlank(picsArr)
 						&& PicsUrls.containsUeditors(picsArr)) {
-					log.info("basePath的基本路径为："+basePath);
+					log.info("basePath的基本路径为：" + basePath);
 					String temp = picsArr.replace(basePath, "");
-					log.info("截取后的临时路径为："+temp);
+					log.info("截取后的临时路径为：" + temp);
 					String realPath = session.getServletContext().getRealPath(
 							temp);// ueditor的真实路径
 					log.info("ueditor上传的图片的真实路径" + realPath);
@@ -128,10 +127,11 @@ public class AdminArticleController {
 							.indexOf(PicsUrls.PIC_KEYWORD));// :
 															// /upload/image/20150416/1429193129926088002.jpg
 					// 服务器端重新存放图片的位置，真实路径，和虚拟路径
-					//修改一下程序，存在一个bug：这样改了之后，图片的全部连接地址不全，无法加载出页面的，需要修改。
-					//加上basePath前缀
-					String xxxpic = basePath+PicsUrls.PIC_PATH + strTemp;
-					String xxxrealpathpic = PicsUrls.PIC_REALPATH_TEMP + strTemp;
+					// 修改一下程序，存在一个bug：这样改了之后，图片的全部连接地址不全，无法加载出页面的，需要修改。
+					// 加上basePath前缀
+					String xxxpic = basePath + PicsUrls.PIC_PATH + strTemp;
+					String xxxrealpathpic = PicsUrls.PIC_REALPATH_TEMP
+							+ strTemp;
 					log.info("保存到服务器的指定路径" + xxxrealpathpic);
 					// 保存图片到服务器端指定的位置
 					HsFile.copyfile(realPath, xxxrealpathpic);
@@ -148,8 +148,9 @@ public class AdminArticleController {
 					String strTemp = picsArr.substring(picsArr
 							.indexOf(PicsUrls.PIC_KEYWORD));// :
 															// /upload/image/20150416/1429193129926088002.jpg
-					String xxxpic = basePath+PicsUrls.PIC_PATH + strTemp;
-					String xxxrealpathpic = PicsUrls.PIC_REALPATH_TEMP + strTemp;
+					String xxxpic = basePath + PicsUrls.PIC_PATH + strTemp;
+					String xxxrealpathpic = PicsUrls.PIC_REALPATH_TEMP
+							+ strTemp;
 
 					xxxpics += xxxpic + ",";
 					xxxrealpathpics += xxxrealpathpic + ",";
@@ -194,47 +195,49 @@ public class AdminArticleController {
 	}
 
 	@RequestMapping("/articleList")
-	public String articleList(HttpServletRequest request,Integer currentPage) {
+	public String articleList(HttpServletRequest request, Integer currentPage) {
 		// List<Category> categoryList=categoryService.findAllCategoryList();
 		// request.setAttribute("categoryList", categoryList);
-		if(currentPage==null){
-			currentPage=1;
+		if (currentPage == null) {
+			currentPage = 1;
 		}
 		List<Article> mArticles = articleService.findAllArticle();
 
 		for (Article a : mArticles) {
 			String content = a.getContent();
 			content = Jsoup.parse(content).text();
-			if(StringUtils.isNotBlank(content)){
-				content=content.length()>40?content.substring(0, 40):content;
+			if (content!=null) {
+				content = content.length() > 40 ? content.substring(0, 40)
+						: content;
 				a.setContent(content);
 			}
-			//<wbr>
-			String url=a.getFromurl();
+			// <wbr>
+			String url = a.getFromurl();
 			a.setFromurl(HtmlUtils.appendWbrTag(url));
 		}
-		
+
 		PageView<Article> pageView = new PageView<Article>(10, currentPage);
 		int start = pageView.getStartRecordIndex();
 		int lenght = pageView.getRecordPerPage();
-		QueryResult<Article> qr = new QueryResult<Article>(mArticles.subList(start,
-				start + lenght), mArticles.size());
+		QueryResult<Article> qr = new QueryResult<Article>(mArticles.subList(
+				start, start + lenght>mArticles.size()?mArticles.size():start + lenght), mArticles.size());
 		pageView.setQueryResult(qr);
 		request.setAttribute("pageView", pageView);
 		request.setAttribute("currentPage", currentPage);
 
 		return "/adminArticle/articleList";
 	}
-/**
- * @desc 分页测试
- * @param request
- * @param currentPage
- * @return
- */
+
+	/**
+	 * @desc 分页测试
+	 * @param request
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("/testPageView")
 	public String testPageView(HttpServletRequest request, Integer currentPage) {
-		if(currentPage==null){
-			currentPage=1;
+		if (currentPage == null) {
+			currentPage = 1;
 		}
 		List<Student> list = new ArrayList<Student>();
 		// 模拟数据
