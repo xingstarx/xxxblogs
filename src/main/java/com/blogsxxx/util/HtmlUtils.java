@@ -13,8 +13,8 @@ public class HtmlUtils {
 			return content;
 		}
 		StringBuffer sbf=new StringBuffer();
-		for(int i=20;i<=content.length()-1;i+=20){
-			sbf.append(content.substring(i-20, i)).append("<wbr>");
+		for(int i=0;i<=content.length()-1;i+=20){
+			sbf.append(content.substring(i, i+20>content.length()?content.length():i+20)).append("<wbr>");
 		}
 		return sbf.toString();
 	}
