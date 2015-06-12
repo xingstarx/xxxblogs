@@ -2,6 +2,10 @@ package com.blogsxxx.model;
 
 import java.util.Date;
 
+import org.jsoup.Jsoup;
+
+import com.blogsxxx.util.HtmlUtils;
+
 public class Article {
     private Integer id;//主键
 
@@ -142,4 +146,18 @@ public class Article {
 				+ ", fromurl=" + fromurl + ", categoryname=" + categoryname
 				+ ", categoryid=" + categoryid + "]";
 	}
+    /**
+     * @desc 只取出文本元素
+     * @author xiongxingxing
+     */
+    public void setTextContent(){
+    	String content = getContent();
+    	content=HtmlUtils.htmltoText(content);
+    	if (content != null) {
+			content = content.length() > 40 ? content.substring(0, 40)
+					: content;
+			
+			setContent(content);
+		}
+    }
 }
