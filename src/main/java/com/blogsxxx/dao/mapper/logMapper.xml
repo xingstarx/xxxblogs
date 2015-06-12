@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blogsxxx.dao.LogDao">
+
+	<!-- 插入日志表 -->
+	<select id="addLogByOrderId" statementType="CALLABLE">
+		<![CDATA[  
+			{call copy_record_byId(#{p_id,mode=IN},#{p_record_table,mode=IN},#{r_succuss_flag,mode=OUT,jdbcType=VARCHAR})}
+		]]>
+	</select>
+
+	<!-- 插入日志表 -->
+	<!-- <select id="addLogWithVisionByOrderId" statementType="CALLABLE"> <![CDATA[ 
+		{call tb_table_log_pkg.copy_record_vbyOrderId(#{p_id,mode=IN},#{p_record_table,mode=IN},#{r_succuss_flag,mode=OUT,jdbcType=VARCHAR})} 
+		]]> </select> -->
+
+
+	<!-- 插入日志表 -->
+	<!-- <select id="addLogByReceiveId" statementType="CALLABLE"> <![CDATA[ 
+		{call tb_table_log_pkg.copy_record_byReceivable_id(#{p_id,mode=IN},#{p_record_table,mode=IN},#{r_succuss_flag,mode=OUT,jdbcType=VARCHAR})} 
+		]]> </select> -->
+
+
+	<!-- 拷贝tb_bill记录通过contractNo(根据合同编号删除tb_bill中未付款款项 ) -->
+	<!-- <select id="addLogByContractNo" statementType="CALLABLE"> <![CDATA[ 
+		{call tb_table_log_pkg.copy_record_byContractNo(#{p_id,mode=IN},#{p_record_table,mode=IN},#{r_succuss_flag,mode=OUT,jdbcType=VARCHAR})} 
+		]]> </select> -->
+	<!--添加合同日志 -->
+	<!-- <select id="addContractLogByContractNo" statementType="CALLABLE"> <![CDATA[ 
+		{call tb_table_log_pkg.copy_contract2log_byContractNo(#{contract_no,mode=IN},#{p_record_table,mode=IN},#{r_succuss_flag,mode=OUT,jdbcType=VARCHAR})} 
+		]]> </select> -->
+	<!--合同收款信息日志 -->
+	<!-- <select id="addContractreceivableLogById" statementType="CALLABLE"> 
+		<![CDATA[ {call tb_table_log_pkg.copy_contractreceivable_byid(#{p_id,mode=IN},#{p_record_table,mode=IN},#{r_succuss_flag,mode=OUT,jdbcType=VARCHAR})} 
+		]]> </select> -->
+
+</mapper>
