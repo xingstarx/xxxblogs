@@ -24,6 +24,7 @@ import com.blogsxxx.model.Article;
 import com.blogsxxx.model.Category;
 import com.blogsxxx.service.article.ArticleService;
 import com.blogsxxx.service.article.CategoryService;
+import com.blogsxxx.service.article.LogService;
 import com.blogsxxx.service.article.TimeLineService;
 import com.blogsxxx.service.timer.CsdnArticleService;
 import com.blogsxxx.test.PageView;
@@ -47,6 +48,8 @@ public class AdminArticleController {
 	private CsdnArticleService csdnArticleService;
 	@Autowired
 	private TimeLineService timeLineService;
+	@Autowired
+	private LogService logService;
 
 	private Logger log = Logger.getLogger(getClass());
 
@@ -106,6 +109,9 @@ public class AdminArticleController {
 			// 修改的文章
 		} else {
 			article.setFromurl(oldArticle.getFromurl());// 沿用原来的来源
+			logService.addArticleLog(oldArticle.getId());
+			article.setId(oldArticle.getId());
+			articleService.updateArticle(article);
 		}
 
 		return "redirect:/article/showView?id=" + article.getId();

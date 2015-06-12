@@ -71,4 +71,9 @@ public interface ArticleService {
 	 * @return
 	 */
 	List<Article> findArticleByCategoryId(Integer id);
+	/**
+	 * @desc 更新文章
+	 * @param article
+	 */
+	void updateArticle(Article article);
 }

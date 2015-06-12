@@ -82,6 +82,11 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return articleDao.findArticleByCategoryId(id);
 	}
+
+	@Override
+	public void updateArticle(Article article) {
+		articleDao.updateByPrimaryKeyWithBLOBs(article);
+	}
 	
 	
 }
