@@ -142,9 +142,7 @@ public class ArticleController {
 			return "/404";
 		}
 		for (Article a : articles) {
-			String content = a.getContent();
-			content = Jsoup.parse(content).text().substring(0, 40);
-			a.setContent(content);
+			a.setTextContent();
 		}
 		map.put("articles", articles);
 		List<TimeLine> timeLineList = timeLineService.findAllTimeLineList();
@@ -170,9 +168,7 @@ public class ArticleController {
 			return "/404";
 		}
 		for (Article a : articles) {
-			String content = a.getContent();
-			content = Jsoup.parse(content).text().substring(0, 40);
-			a.setContent(content);
+			a.setTextContent();
 		}
 		map.put("articles", articles);
 		List<TimeLine> timeLineList = timeLineService.findAllTimeLineList();
