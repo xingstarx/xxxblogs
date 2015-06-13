@@ -16,6 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>博客后台</title>
 <base href="<%=basePath %>"/>
+<link rel="icon" href="<%=basePath %>images/xxxblogs.jpg">
 </head>
 <frameset rows="*" cols="180,*" frameborder="no" border="0" framespacing="0">
   <frame src="<%=basePath %>left" name="leftFrame" scrolling="auto" noresize="noresize" id="leftFrame" title="leftFrame" />

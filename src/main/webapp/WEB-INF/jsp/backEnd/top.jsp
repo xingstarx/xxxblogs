@@ -14,7 +14,7 @@
 <HTML>
 <HEAD>
 <link rel="stylesheet" href="css/css.css" type="text/css">
-
+<link rel="icon" href="<%=basePath %>images/xxxblogs.jpg">
 <META http-equiv=Content-Type content="text/html; charset=UTF-8">
 <META content="MSHTML 6.00.2900.2180" name=GENERATOR>
 </HEAD>
