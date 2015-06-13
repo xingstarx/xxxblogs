@@ -15,19 +15,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>博客后台</title>
-<base href="<%=basePath %>"/>
-<link rel="icon" href="<%=basePath %>images/xxxblogs.jpg">
+<base href="<%=basePath%>" />
+<link rel="icon" href="<%=basePath%>images/xxxblogs.jpg">
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?d1ebc9a1d5eeec4e5fb82456d337dae6";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
 </head>
-<frameset rows="*" cols="180,*" frameborder="no" border="0" framespacing="0">
-  <frame src="<%=basePath %>left" name="leftFrame" scrolling="auto" noresize="noresize" id="leftFrame" title="leftFrame" />
-  <frameset rows="50,*" frameborder="no" border="0" framespacing="0">
-    <frame src="<%=basePath %>top" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
-    <frame src="<%=basePath %>main" name="mainFrame" id="mainFrame" title="mainFrame" />
-  </frameset>
+<frameset rows="*" cols="180,*" frameborder="no" border="0"
+	framespacing="0">
+	<frame src="<%=basePath%>left" name="leftFrame" scrolling="auto"
+		noresize="noresize" id="leftFrame" title="leftFrame" />
+	<frameset rows="50,*" frameborder="no" border="0" framespacing="0">
+		<frame src="<%=basePath%>top" name="topFrame" scrolling="No"
+			noresize="noresize" id="topFrame" title="topFrame" />
+		<frame src="<%=basePath%>main" name="mainFrame" id="mainFrame"
+			title="mainFrame" />
+	</frameset>
 </frameset>
 <noframes>
-<body>
-<p>该浏览器不兼容此框架!</p>
-</body>
+	<body>
+		<p>该浏览器不兼容此框架!</p>
+	</body>
 </noframes>
 </html>

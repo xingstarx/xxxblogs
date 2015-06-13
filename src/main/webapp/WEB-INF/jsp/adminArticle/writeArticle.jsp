@@ -27,6 +27,17 @@ div {
 	width: 100%;
 }
 </style>
+
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?d1ebc9a1d5eeec4e5fb82456d337dae6";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
 <link rel="icon" href="../images/xxxblogs.jpg">
 <title>Insert title here</title>
 </head>

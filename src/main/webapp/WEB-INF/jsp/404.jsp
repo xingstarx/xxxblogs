@@ -20,7 +20,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="blog,java,xingxing">
 <meta name="author" content="一个小码农">
-<link rel="icon" href="<%=basePath %>images/xxxblogs.jpg">
+<link rel="icon" href="<%=basePath%>images/xxxblogs.jpg">
 
 <title>星星的blogs</title>
 
@@ -38,6 +38,16 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?d1ebc9a1d5eeec4e5fb82456d337dae6";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
 </head>
 
 <body>

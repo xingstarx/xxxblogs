@@ -38,6 +38,16 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?d1ebc9a1d5eeec4e5fb82456d337dae6";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
 </head>
 
 <body>
@@ -55,11 +65,13 @@
 				<c:forEach items="${articles}" var="article" varStatus="status">
 
 					<div class="blog-post">
-						<h2 class="blog-post-title"><a href="<%=basePath%>article/showView?id=${article.id}">${article.title }</a></h2>
+						<h2 class="blog-post-title">
+							<a href="<%=basePath%>article/showView?id=${article.id}">${article.title }</a>
+						</h2>
 						<p class="blog-post-meta">
 							<fmt:formatDate value="${article.createtime }" type="both" />
-							by <span style="color:red;">${article.creater }</span>
-							<span><a href="<%=basePath%>article/showView?id=${article.id}">阅读</a></span>
+							by <span style="color: red;">${article.creater }</span> <span><a
+								href="<%=basePath%>article/showView?id=${article.id}">阅读</a></span>
 						</p>
 						${article.content }...
 
@@ -67,8 +79,8 @@
 					<!-- /.blog-post -->
 
 				</c:forEach>
-				
-			<%-- 	<form:form id="myForm" action="" method="post">
+
+				<%-- 	<form:form id="myForm" action="" method="post">
 				<input type="hidden" id="article_max" name="max" value="${max }"/>
 				<input type="hidden" id="article_min" name="min" value="${min }"/>
 				<input type="hidden" id="article_op" name="op" value=""/>
@@ -94,17 +106,21 @@
 					<div class="sidebar-module">
 						<h4>时间线</h4>
 						<ol class="list-unstyled">
-								<c:forEach items="${timeLineList}" var="timeLine" varStatus="status">
-									<li><a href="<%=basePath%>article/timeline?id=${timeLine.id }">${timeLine.descr }(${timeLine.articlecount })</a></li>
-								</c:forEach>
-							</ol>
+							<c:forEach items="${timeLineList}" var="timeLine"
+								varStatus="status">
+								<li><a
+									href="<%=basePath%>article/timeline?id=${timeLine.id }">${timeLine.descr }(${timeLine.articlecount })</a></li>
+							</c:forEach>
+						</ol>
 					</div>
 					<div class="sidebar-module">
 						<h4>分类</h4>
 						<ol class="list-unstyled">
-							<c:forEach items="${categoryList}" var="category" varStatus="status">
-									<li><a href="<%=basePath%>article/category?id=${category.id }">${category.categoryname }(${category.articlecount })</a></li>
-								</c:forEach>
+							<c:forEach items="${categoryList}" var="category"
+								varStatus="status">
+								<li><a
+									href="<%=basePath%>article/category?id=${category.id }">${category.categoryname }(${category.articlecount })</a></li>
+							</c:forEach>
 						</ol>
 					</div>
 				</div>
@@ -118,8 +134,7 @@
 
 		<footer class="blog-footer">
 			<p>
-				xingstar's blogs! <br>
-				个人博客项目 made by java!
+				xingstar's blogs! <br> 个人博客项目 made by java!
 			</p>
 		</footer>
 
@@ -127,18 +142,18 @@
 		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 		<script src="../bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
-		$(function() { 
-		});
-		/* function pre(){
-			$("#article_op").val("pre");
-			$("#myForm").attr("action","flip");
-			$("#myForm").submit();
-		}
-		function next(){
-			$("#article_op").val("next");
-			$("#myForm").attr("action","flip");
-			$("#myForm").submit();
-		} */
+			$(function() {
+			});
+			/* function pre(){
+				$("#article_op").val("pre");
+				$("#myForm").attr("action","flip");
+				$("#myForm").submit();
+			}
+			function next(){
+				$("#article_op").val("next");
+				$("#myForm").attr("action","flip");
+				$("#myForm").submit();
+			} */
 		</script>
 </body>
 </html>
