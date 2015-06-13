@@ -8,7 +8,7 @@
 	content="width=device-width,initial-scale=1,maximum-scale=1.0" />
 <title>xxxblogs登陆页面</title>
 <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css" />
-
+<link rel="icon" href="../images/xxxblogs.jpg">
 <style type="text/css">
 html, body {
 	height: 100%;

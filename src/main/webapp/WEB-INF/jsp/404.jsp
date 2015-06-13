@@ -20,7 +20,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="blog,java,xingxing">
 <meta name="author" content="一个小码农">
-<link rel="icon" href="../../favicon.ico">
+<link rel="icon" href="<%=basePath %>images/xxxblogs.jpg">
 
 <title>星星的blogs</title>
 

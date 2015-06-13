@@ -27,6 +27,7 @@ div {
 	width: 100%;
 }
 </style>
+<link rel="icon" href="../images/xxxblogs.jpg">
 <title>Insert title here</title>
 </head>
 <body>

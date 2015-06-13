@@ -12,13 +12,13 @@
 %>
 <html>
 <head>
-<script type="text/javascript" charset="utf-8"
-	src="js/base.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/base.js"></script>
+<link rel="icon" href="<%=basePath%>images/xxxblogs.jpg">
 </head>
 <body>
-<h2>欢迎访问xing xing的blogs!</h2>
-<script type="text/javascript">
-window.location = basePath + "article/index" ;
-</script>
+	<h2>欢迎访问xing xing的blogs!</h2>
+	<script type="text/javascript">
+		window.location = basePath + "article/index";
+	</script>
 </body>
 </html>

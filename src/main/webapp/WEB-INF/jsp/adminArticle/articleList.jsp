@@ -13,6 +13,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="../css/css.css" type="text/css" />
+<link rel="icon" href="../images/xxxblogs.jpg">
 </head>
 <body>
 	<form name="form1" method="post"
