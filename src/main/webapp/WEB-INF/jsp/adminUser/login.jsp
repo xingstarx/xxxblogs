@@ -7,7 +7,8 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,maximum-scale=1.0" />
 <title>xxxblogs登陆页面</title>
-<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../bootstrap/css/bootstrap.min.css" />
 <link rel="icon" href="../images/xxxblogs.jpg">
 <style type="text/css">
 html, body {
@@ -97,6 +98,15 @@ html, body {
 	font-size: 16px !important;
 }
 </style>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?d1ebc9a1d5eeec4e5fb82456d337dae6";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
 
 </head>
 
@@ -125,9 +135,9 @@ html, body {
 							<div class="col-xs-12  ">
 								<div class="input-group">
 									<span class="input-group-addon"><span
-										class="glyphicon glyphicon-lock"></span></span> <input type="password"
-										id="password" name="password" class="form-control"
-										placeholder="密码">
+										class="glyphicon glyphicon-lock"></span></span> <input
+										type="password" id="password" name="password"
+										class="form-control" placeholder="密码">
 								</div>
 							</div>
 						</div>
@@ -157,8 +167,7 @@ html, body {
 	</div>
 
 	<div style="text-align: center;">
-		<p>
-		</p>
+		<p></p>
 	</div>
 
 </body>

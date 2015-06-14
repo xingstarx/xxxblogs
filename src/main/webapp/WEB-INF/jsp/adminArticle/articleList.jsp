@@ -14,6 +14,16 @@
 <head>
 <link rel="stylesheet" href="../css/css.css" type="text/css" />
 <link rel="icon" href="../images/xxxblogs.jpg">
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?d1ebc9a1d5eeec4e5fb82456d337dae6";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
 </head>
 <body>
 	<form name="form1" method="post"
@@ -50,21 +60,22 @@
 
 					<tr align="center" bgcolor="#DEE5FA">
 						<td width="4%" align="center">${status.count }</td>
-						<td width="10%" align="center" >${article.title }</td>
-						<td width="20%" align="center" >${article.content }...</td>
-						<td width="8%" align="center" >${article.creater }</td>
-						<td width="8%" align="center" ><fmt:formatDate
+						<td width="10%" align="center">${article.title }</td>
+						<td width="20%" align="center">${article.content }...</td>
+						<td width="8%" align="center">${article.creater }</td>
+						<td width="8%" align="center"><fmt:formatDate
 								value="${article.createtime }" type="both" /></td>
-						<td width="8%" align="center" >${article.lastmodifier }</td>
-						<td width="8%" align="center" ><fmt:formatDate
+						<td width="8%" align="center">${article.lastmodifier }</td>
+						<td width="8%" align="center"><fmt:formatDate
 								value="${article.lastmodifytime }" type="both" /></td>
-						<td width="8%" align="center" >${article.fromurl }</td>
-						<td width="6%" align="center" >${article.categoryname }</td>
-						<td width="4%" align="center" >${article.categoryid }</td>
-						<td width="3%" align="center" ><a href="<%=basePath%>adminarticle/toEditorArticle?id=${article.id}">编辑文章</a></td>
-						<td width="3%" align="center" >删除文章</td>
-						<td width="6%" align="center" >隐藏文章|显示文章</td>
-						<td width="4%" align="center" >选定</td>
+						<td width="8%" align="center">${article.fromurl }</td>
+						<td width="6%" align="center">${article.categoryname }</td>
+						<td width="4%" align="center">${article.categoryid }</td>
+						<td width="3%" align="center"><a
+							href="<%=basePath%>adminarticle/toEditorArticle?id=${article.id}">编辑文章</a></td>
+						<td width="3%" align="center">删除文章</td>
+						<td width="6%" align="center">隐藏文章|显示文章</td>
+						<td width="4%" align="center">选定</td>
 					</tr>
 
 				</c:forEach>
@@ -109,11 +120,11 @@
 					arrObj[i].checked = false;
 			}
 		}
-		
+
 		//到指定的分页页面
-		function topage(page){
+		function topage(page) {
 			var form = document.forms[0];//包含currentPage hidden框的form
-			form.currentPage.value=page;
+			form.currentPage.value = page;
 			form.submit();
 		}
 	</script>

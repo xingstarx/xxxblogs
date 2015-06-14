@@ -14,7 +14,17 @@
 <HTML>
 <HEAD>
 <META http-equiv=Content-Type content="text/html; charset=UTF-8">
-<link rel="icon" href="<%=basePath %>images/xxxblogs.jpg">
+<link rel="icon" href="<%=basePath%>images/xxxblogs.jpg">
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?d1ebc9a1d5eeec4e5fb82456d337dae6";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+
 <TITLE>管理页面</TITLE>
 <STYLE type=text/css>
 BODY {
@@ -88,6 +98,7 @@ A:hover {
 
 <SCRIPT language=javascript1.2>
 	
+	
 function showsubmenu(sid)
 {
 whichEl = eval("submenu" + sid);
@@ -100,6 +111,7 @@ else
 eval("submenu" + sid + ".style.display=\"none\";");
 }
 }
+
 
 </SCRIPT>
 
