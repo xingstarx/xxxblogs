@@ -41,5 +41,10 @@ public interface CsdnArticleService {
 	 * @desc 总的调度，即系统第一次调度，把csdn上的文章同步过来
 	 */
 	public void synchronCSDNBlogsAndCreateTable();
+	/**
+	 * @desc 更新类别纪录
+	 * @param mCategoryList
+	 */
+	void updateCategory(List<Map<String, Object>> mCategoryList);
 	
 }

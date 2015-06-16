@@ -227,7 +227,8 @@ public class CsdnArticleServiceImpl implements CsdnArticleService {
  * @desc 更新Category类别，主要是统计count
  * @param mCategoryList
  */
-	private void updateCategory(List<Map<String, Object>> mCategoryList) {
+	@Override
+	public void updateCategory(List<Map<String, Object>> mCategoryList) {
 		// TODO Auto-generated method stub
 		for (Map<String, Object> map : mCategoryList) {
 			String categoryname=map.get("categoryname").toString();
