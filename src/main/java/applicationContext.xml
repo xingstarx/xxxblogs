@@ -112,11 +112,21 @@
 		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
 
 	<!-- 同步任务 -->
-	<!-- <bean name="csdnArticleServiceImpl" class="com.blogsxxx.service.timer.impl.CsdnArticleServiceImpl"/> 
-		<task:scheduler id="scheduler" pool-size="10"/> <task:scheduled-tasks scheduler="scheduler"> 
-		<task:scheduled ref="csdnArticleServiceImpl" method="initCsdnCategory" cron="0 
-		47 16 * * ?"/> <task:scheduled ref="csdnArticleServiceImpl" method="initCsdnArticleAll" 
-		cron="0 25 19 * * ?"/> <task:scheduled ref="csdnArticleServiceImpl" method="cpCsdnArticleToXXXBlogs" 
-		cron="0 29 21 * * ?"/> <task:scheduled ref="csdnArticleServiceImpl" method="synchronCSDNBlogsAndCreateTable" 
-		cron="0 29 21 * * ?"/> </task:scheduled-tasks> -->
+	<bean name="csdnArticleServiceImpl"
+		class="com.blogsxxx.service.timer.impl.CsdnArticleServiceImpl" />
+	<bean name="updateArticleServiceImpl"
+		class="com.blogsxxx.service.timer.impl.UpdateArticleServiceImpl" />
+	<task:scheduler id="scheduler" pool-size="10" />
+	<task:scheduled-tasks scheduler="scheduler">
+		<!-- <task:scheduled ref="csdnArticleServiceImpl" method="initCsdnCategory" 
+			cron="0 47 16 * * ?" /> -->
+		<!-- <task:scheduled ref="csdnArticleServiceImpl" method="initCsdnArticleAll" 
+			cron="0 25 19 * * ?" /> <task:scheduled ref="csdnArticleServiceImpl" method="cpCsdnArticleToXXXBlogs" 
+			cron="0 29 21 * * ?" /> -->
+		<!-- <task:scheduled ref="csdnArticleServiceImpl" method="synchronCSDNBlogsAndCreateTable" 
+			cron="0 29 21 * * ?" /> -->
+			<!-- 凌晨一点调度 -->
+		<task:scheduled ref="updateArticleServiceImpl" method="sychronUpdateArticle"
+			cron="0 0 1 * * ?" />
+	</task:scheduled-tasks>
 </beans>        
