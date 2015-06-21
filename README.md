@@ -1,4 +1,4 @@
-##这是我的个人博客项目--xxxblogs
+##这是我的个人博客项目--xxxblogs  线上地址：[xxxblogs](http://112.74.81.77/article/index)
 ***
 ###技术上采用的是springmvc,spring,mybatis。项目托管在bitbucket上，通过maven构建处理项目之间的依赖。数据库是mysql，项目部署在阿里云上，阿里云系统为centos
 ***
